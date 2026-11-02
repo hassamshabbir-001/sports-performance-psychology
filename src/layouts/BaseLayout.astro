@@ -132,6 +132,10 @@ const current = Astro.url.pathname;
     }
     .main-nav li.has-dropdown:hover > .dropdown,
     .main-nav li.has-dropdown:focus-within > .dropdown { display: block; }
+    /* invisible bridge over the 6px gap so hover never breaks while moving to the menu */
+    .main-nav .dropdown::before {
+      content: ""; position: absolute; top: -8px; left: 0; right: 0; height: 8px;
+    }
     .main-nav .dropdown li { display: block; }
     .main-nav .dropdown a {
       display: block; padding: 10px 14px; border-bottom: none;

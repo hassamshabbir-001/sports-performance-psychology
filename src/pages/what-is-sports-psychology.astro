@@ -1,22 +1,398 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const bookIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h13"/><path d="M9 7h7"/></svg>';
+const usersIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M17.5 14.2a6.5 6.5 0 0 1 4 5.8"/></svg>';
+const compassIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>';
+const toolsIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><path d="M14.5 6.5a4 4 0 0 0-5.6 5.1L4 16.5V20h3.5l4.9-4.9a4 4 0 0 0 5.1-5.6l-2.8 2.8-2.5-.7-.7-2.5z"/></svg>';
+const heartIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><path d="M12 20.5S3.5 15.4 3.5 9.6A4.6 4.6 0 0 1 8.2 5c1.6 0 3 .9 3.8 2.2A4.6 4.6 0 0 1 15.8 5a4.6 4.6 0 0 1 4.7 4.6c0 5.8-8.5 10.9-8.5 10.9z"/></svg>';
+const clockIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>';
+const scaleIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><path d="M12 4v16M5 7l7-3 7 3"/><path d="M5 7l-2.5 6a3.5 3.5 0 0 0 7 0L7 7M19 7l-2.5 6a3.5 3.5 0 0 0 7 0L21 7"/></svg>';
+const chatIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H4l2-3a8 8 0 1 1 15-5z"/></svg>';
+const targetIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="#D62828"/></svg>';
+const brainIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><path d="M9.5 3A5.5 5.5 0 0 0 4 8.5c-1.6.8-2.5 2.4-2 4 .1 2 1.6 3.2 2 5 .3 1.6 1.7 2.8 3.4 2.9.6 1 1.7 1.6 2.9 1.6h1.4c1.2 0 2.3-.6 2.9-1.6 1.7-.1 3.1-1.3 3.4-2.9.4-1.8 1.9-3 2-5 .5-1.6-.4-3.2-2-4A5.5 5.5 0 0 0 14.5 3 5.5 5.5 0 0 0 12 4.2 5.5 5.5 0 0 0 9.5 3z"/><path d="M12 4.5v16"/></svg>';
+const medalIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.5L7 21l5-2.5L17 21l-1.5-7.5"/></svg>';
+const shieldIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6z"/><path d="M9.5 12l2 2 3.5-4"/></svg>';
+
+const techniques = [
+  {
+    id: "goal-setting",
+    title: "Goal Setting",
+    icon: targetIcon,
+    intro: "Turn vague ambitions into clear, controllable targets.",
+    body: [
+      "Goal setting is the foundation of every other mental skill because it defines what the athlete is working toward. Effective goals are specific, measurable, and focused on process rather than outcome. Instead of 'play well on Saturday,' an athlete sets a target like 'keep my follow-through high on every free throw in practice this week.' Process goals keep attention on controllable actions, which is where confidence is built.",
+      "A useful structure separates three layers: outcome goals (the result you want), performance goals (the standards you set for yourself), and process goals (the specific actions you will execute). Most athletes overemphasize outcome goals, which they cannot fully control. Shifting daily attention to process goals makes progress visible even when results vary, and that visible progress sustains motivation through long seasons."
+    ]
+  },
+  {
+    id: "visualization",
+    title: "Visualization",
+    icon: brainIcon,
+    intro: "Rehearse performance vividly in the mind before it happens.",
+    body: [
+      "Visualization, also called mental imagery, means creating a detailed multi-sensory rehearsal of a skill in your mind. Athletes picture the movement, feel the muscles involved, hear the sounds of the venue, and run the scene at real speed. It is one of the most widely used techniques in sport psychology, practiced at every level from youth leagues to professional sport.",
+      "Imagery works best when it is vivid, realistic, and practiced regularly alongside physical training. A simple routine: close your eyes, take three slow breaths, and mentally perform one specific skill exactly as you want to execute it, then repeat the scene three times. Our full <a href=\"/blog/visualization-for-athletes/\">visualization guide for athletes</a> walks through the complete method step by step."
+    ]
+  },
+  {
+    id: "self-talk",
+    title: "Self-Talk",
+    icon: chatIcon,
+    intro: "Replace unplanned inner dialogue with useful cues.",
+    body: [
+      "Self-talk is the running commentary in an athlete's head during training and competition, and it directly shapes effort, emotion, and focus. Instructional self-talk gives technical cues ('elbow in, follow through'), while motivational self-talk regulates energy ('push through this rep'). The problem is not that athletes talk to themselves, it is that most of it is negative and unplanned.",
+      "Improving self-talk starts with noticing current patterns, then rewriting unhelpful lines into short, specific, present-tense alternatives. 'I always choke' becomes 'breathe, next play.' Keep phrases brief, because long sentences cannot survive high pressure. Pair one cue phrase with your pre-performance routine and one reset phrase with mistakes, and rehearse both in training until they are automatic."
+    ]
+  },
+  {
+    id: "routines",
+    title: "Pre-Performance Routines",
+    icon: clockIcon,
+    intro: "Use fixed sequences to lock in focus before competing.",
+    body: [
+      "A pre-performance routine is a fixed sequence of thoughts and actions performed before or during competition: the same breaths, the same cue word, the same physical setup, every time. The purpose is not superstition. A consistent routine narrows attention, blocks distractions, and gives the athlete a sense of control in high-pressure moments.",
+      "Effective routines are consistent, controllable, and brief enough to fit the rhythm of the sport. Build three kinds: a pre-performance routine for before the event, an in-performance routine for between plays, and a reset routine for mistakes. The reset routine is the most valuable: one physical action, one cue word, one breath, rehearsed until a mistake triggers the reset instead of a spiral."
+    ]
+  },
+  {
+    id: "arousal",
+    title: "Arousal and Energy Regulation",
+    icon: shieldIcon,
+    intro: "Learn to raise or lower intensity to match the moment.",
+    body: [
+      "Every athlete performs best at a personal optimal level of arousal, the blend of physical energy and mental alertness. Some athletes need to calm down before competing; others need to fire themselves up. Arousal regulation is the skill of moving your energy level toward that optimum on demand.",
+      "To lower arousal, athletes use slow diaphragmatic breathing, progressive muscle relaxation, and calming cue words. To raise it, they use energizing self-talk, upbeat music, and dynamic movement. The first step is self-awareness: notice whether you tend to compete tight and tentative (over-aroused) or flat and sluggish (under-aroused), then practice the matching tools in training before you need them in competition."
+    ]
+  },
+  {
+    id: "concentration",
+    title: "Concentration Training",
+    icon: medalIcon,
+    intro: "Direct attention to the right cue and bring it back fast.",
+    body: [
+      "Concentration in sport means directing attention to the right cue at the right time and returning it there after distractions. Different sports demand different attention styles: a golfer needs narrow focus on the ball, a point guard needs broad awareness of the court. Training concentration means practicing the attention style your position requires.",
+      "Start by identifying your key performance cues, the one or two things that matter most in the moment. Then build a refocusing plan for the distractions you actually face, using a cue word that snaps attention back to the present task. Practice under mild pressure in training, with consequences on drills or background noise, so that focus holds up when it counts."
+    ]
+  }
+];
+
+const faqs = [
+  {
+    q: "Is sports psychology only for elite athletes?",
+    a: "No. Mental skills help athletes at every level, from youth players learning to handle nerves to weekend competitors who want more consistent performances. The techniques are the same; only the competitive context changes. Coaches, parents of young athletes, and teams also use sports psychology principles."
+  },
+  {
+    q: "How is a sports psychologist different from a therapist?",
+    a: "A sports psychology consultant focuses on performance: building mental skills like focus, confidence, and composure to help you compete better. A therapist or counselor focuses on mental health: treating conditions like anxiety disorders, depression, or eating disorders. The roles can overlap, but they have different training and different goals. If you are dealing with a mental health condition, work with a licensed mental health professional."
+  },
+  {
+    q: "Does sports psychology replace coaching?",
+    a: "No, it complements coaching. Coaches develop physical, technical, and tactical ability; sports psychology develops the mental side that lets athletes use those abilities under pressure. Many consultants work directly with coaches, helping them communicate better, run effective practices, and support athletes through slumps."
+  },
+  {
+    q: "What happens when you work with a sports psychology consultant?",
+    a: "In general, the work starts with a conversation about your goals and the situations where your mind holds you back. The consultant then helps you assess your mental strengths and patterns, teaches specific skills matched to your needs, and builds a practice plan you use in training. Progress comes from rehearsing the skills regularly, not from a single session."
+  },
+  {
+    q: "How long does mental skills training take to work?",
+    a: "It varies by person and by skill. Simple tools like a pre-performance routine or a cue word can help within weeks of consistent practice. Deeper changes, such as rebuilding confidence after a long slump, take longer. Like physical training, mental skills improve with regular, structured repetition over a season, not overnight."
+  },
+  {
+    q: "Can sports psychology help with fear of failure or performance anxiety?",
+    a: "Performance anxiety is one of the most common reasons athletes seek help. Consultants teach tools such as routines, breathing, refocusing plans, and realistic self-talk that reduce the physical and mental symptoms of nerves. When anxiety is severe, persistent, or part of a broader mental health condition, a licensed mental health professional is the right starting point."
+  }
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://sportsperformancepsychology.com/what-is-sports-psychology/#webpage",
+      "url": "https://sportsperformancepsychology.com/what-is-sports-psychology/",
+      "name": "What Is Sports Psychology? Definition and Techniques",
+      "description": "Sports psychology explained: what it is, what sports psychologists do, key mental skills techniques, and how it helps athletic performance.",
+      "isPartOf": { "@id": "https://sportsperformancepsychology.com/#website" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sportsperformancepsychology.com/" },
+        { "@type": "ListItem", "position": 2, "name": "What Is Sports Psychology?", "item": "https://sportsperformancepsychology.com/what-is-sports-psychology/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map((f) => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+};
 ---
 <BaseLayout
   title="What Is Sports Psychology? Definition and Techniques"
   description="Sports psychology explained: what it is, what sports psychologists do, key mental skills techniques, and how it helps athletic performance."
-  ogImage="/images/athlete-preparation-track.webp"
+  ogImage="/images/what-is-sports-psychology.webp"
 >
-  <section class="page-hero">
-    <div class="wrap">
-      <p class="breadcrumbs"><a href="/">Home</a> / What Is Sports Psychology?</p>
-      <h1>What Is Sports Psychology?</h1>
-      <p>Sports psychology is the study of how psychological factors affect athletic performance, and how participation in sport affects a person's mental state.</p>
+
+  <!-- Inner hero -->
+  <section class="inner-hero">
+    <div class="wrap inner-hero-grid">
+      <div class="inner-hero-copy">
+        <p class="crumbs"><a href="/">Home</a> &rsaquo; What Is Sports Psychology?</p>
+        <h1>What Is <span class="accent">Sports Psychology?</span></h1>
+        <p class="lead">The science of the mental side of sport: how the mind shapes performance, and how to train it like any other skill.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-red" href="#techniques">Explore Key Techniques <Fragment set:html={arrow} /></a>
+          <a class="btn btn-outline" href="#definition">Start With the Definition</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-media" aria-hidden="true">
+      <img class="photo" src="/images/what-is-sports-psychology.webp" alt="Sports psychology consultant coaching an athlete beside a whiteboard listing focus, confidence, routines, visualization, and mental resilience" width="1752" height="897" fetchpriority="high" style="object-position: 32% 22%;" />
+      <svg class="hero-curve" viewBox="0 0 500 600" preserveAspectRatio="none">
+        <path d="M100,0 C42,150 42,450 100,600" fill="none" stroke="#D62828" stroke-width="10"/>
+      </svg>
     </div>
   </section>
-  <section class="page-body">
+
+  <style>
+    .quick-grid.six { grid-template-columns: repeat(6, 1fr); }
+    @media (max-width: 1020px) {
+      .quick-grid.six { grid-template-columns: repeat(3, 1fr); }
+      .quick-grid.six .quick-item:nth-child(n+3) { border-top: none; }
+      .quick-grid.six .quick-item:nth-child(n+4) { border-top: 1px solid var(--line); }
+      .quick-grid.six .quick-item:nth-child(3n+2),
+      .quick-grid.six .quick-item:nth-child(3n+3) { border-left: 1px solid var(--line); }
+    }
+    @media (max-width: 560px) {
+      .quick-grid.six { grid-template-columns: repeat(2, 1fr); }
+      .quick-grid.six .quick-item:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .quick-grid.six .quick-item:nth-child(3n+2),
+      .quick-grid.six .quick-item:nth-child(3n+3) { border-left: none; }
+      .quick-grid.six .quick-item:nth-child(even) { border-left: 1px solid var(--line); }
+    }
+  </style>
+
+  <!-- Quick strip -->
+  <div class="quick-strip">
     <div class="wrap">
-      <p>Sports psychologists work with athletes, coaches, and teams to build mental skills such as focus, confidence, motivation, and composure under pressure. The field covers practical techniques like visualization, self-talk, goal setting, and pre-performance routines, alongside the study of topics like team dynamics and performance anxiety.</p>
-      <p>This page is the starting point of our full guide. Our in-depth articles on <a href="/mental-skills/">mental skills</a>, <a href="/degrees/">degrees</a>, and <a href="/careers/">careers</a> build on the foundations introduced here.</p>
+      <div class="quick-grid six">
+        <a class="quick-item" href="#definition"><Fragment set:html={bookIcon} /><span>Definition</span></a>
+        <a class="quick-item" href="#role"><Fragment set:html={usersIcon} /><span>What They Do</span></a>
+        <a class="quick-item" href="#areas"><Fragment set:html={compassIcon} /><span>Core Areas</span></a>
+        <a class="quick-item" href="#techniques"><Fragment set:html={toolsIcon} /><span>Techniques</span></a>
+        <a class="quick-item" href="#who"><Fragment set:html={heartIcon} /><span>Who It Helps</span></a>
+        <a class="quick-item" href="#history"><Fragment set:html={clockIcon} /><span>History</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Definition -->
+  <section class="section" id="definition">
+    <div class="wrap">
+      <div class="prose">
+        <div class="disclaimer-box">This page is for educational purposes only and is not medical or psychological advice. If you are dealing with anxiety, depression, or an eating disorder, please work with a licensed mental health professional.</div>
+        <h2>The Definition, in Plain Language</h2>
+        <p><strong>Sports psychology is the scientific study of how psychological factors affect athletic performance, and how participation in sport and exercise affects a person's mental state.</strong> It asks two questions at once: what goes on in an athlete's mind when it matters most, and how can that inner game be trained?</p>
+        <p>The field has two branches that constantly feed each other. <strong>Research</strong> investigates topics like motivation, focus under pressure, team cohesion, and the psychology of injury recovery. <strong>Applied practice</strong> turns those findings into usable tools: the mental skills training that consultants teach athletes, coaches, and teams. When you read about visualization or pre-game routines on this site, you are reading the applied branch in action.</p>
+        <p>It helps to think of sports psychology as the missing half of training. Physical preparation builds what the body can do. Mental preparation decides how much of that ability shows up on game day. Two athletes with equal talent perform differently under pressure because of trainable psychological skills: how they focus, what they tell themselves, how they prepare, and how they respond to mistakes. Our <a href="/mental-skills/">mental skills training guide</a> breaks those skills into practical steps.</p>
+      </div>
     </div>
   </section>
+
+  <!-- What they do -->
+  <section class="section soft" id="role">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What Sports Psychologists Actually Do</h2>
+        <p>Applied consultants work on performance, not pathology. Here is what that looks like day to day.</p>
+      </div>
+      <div class="prose">
+        <p>A sports psychology consultant, sometimes called a mental performance consultant, works with athletes, coaches, and teams to build the mental side of performance. The core of the job is <strong>mental skills training</strong>: teaching and rehearsing techniques like goal setting, imagery, self-talk, and routines until they hold up in competition. Sessions are practical and forward-looking, closer to coaching than to therapy.</p>
+        <p>With individual athletes, consultants help with focus, confidence, motivation, handling pressure, bouncing back from mistakes, and preparing for big competitions. With coaches, the work often centers on communication, leadership style, running effective practices, and supporting athletes through slumps without damaging confidence. With teams, consultants address cohesion, shared goals, role clarity, and performing as a unit when it counts.</p>
+        <p>An important boundary: applied sports psychology is about <strong>performance enhancement</strong>, not clinical treatment. Consultants teach skills for competing better. They do not diagnose or treat mental health conditions. When an athlete is dealing with an anxiety disorder, depression, disordered eating, or another clinical issue, the right professional is a licensed mental health provider, ideally one who understands sport. This site follows the same line: everything here is educational, and nothing here replaces professional care.</p>
+        <p>If the career side interests you, our <a href="/careers/">careers in sports psychology</a> guide explains the education routes, the CMPC credential, and where consultants work.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core areas -->
+  <section class="section" id="areas">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Core Areas of the Field</h2>
+        <p>The main territories sports psychology research and practice cover.</p>
+      </div>
+      <div class="icon-card-grid">
+        <div class="icon-card">
+          <span class="icon-disc"><Fragment set:html={targetIcon} /></span>
+          <h3>Performance Enhancement</h3>
+          <p>The central mission: helping athletes perform closer to their potential when it matters. This covers the full toolkit of mental skills applied to training and competition.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon-disc"><Fragment set:html={brainIcon} /></span>
+          <h3>Mental Skills Training</h3>
+          <p>The systematic teaching of imagery, self-talk, goal setting, routines, and concentration. Skills are introduced one at a time, rehearsed in practice, then tested in competition.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon-disc"><Fragment set:html={medalIcon} /></span>
+          <h3>Motivation</h3>
+          <p>What drives athletes to train, persist, and improve, and how coaches can build environments that sustain motivation through long seasons and setbacks.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon-disc"><Fragment set:html={shieldIcon} /></span>
+          <h3>Handling Pressure</h3>
+          <p>Understanding performance anxiety and arousal, and training athletes to manage nerves, stay composed, and execute under the specific pressures of their sport.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon-disc"><Fragment set:html={usersIcon} /></span>
+          <h3>Team Dynamics and Leadership</h3>
+          <p>Cohesion, communication, role clarity, and leadership, the group psychology that decides whether talented individuals become an effective team.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon-disc"><Fragment set:html={heartIcon} /></span>
+          <h3>Exercise and Well-Being</h3>
+          <p>The other direction of the field: how sport and physical activity affect mental health, enjoyment, adherence to exercise, and quality of life.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Techniques -->
+  <section class="section soft" id="techniques">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Key Techniques of Sports Psychology</h2>
+        <p>The practical tools consultants teach. Each one is trainable, and each one works best with regular rehearsal.</p>
+      </div>
+      <div class="prose">
+        {techniques.map((t, i) => (
+          <div class="icon-block" id={t.id}>
+            <div class="icon-block-top">
+              <span class="block-num">{String(i + 1).padStart(2, "0")}</span>
+              <span class="icon-disc"><Fragment set:html={t.icon} /></span>
+              <h3>{t.title}</h3>
+            </div>
+            <p><strong>{t.intro}</strong></p>
+            {t.body.map((p) => (<p set:html={p} />))}
+          </div>
+        ))}
+        <p>These six techniques form the core of applied work, and they are covered in greater depth in our <a href="/mental-skills/">mental skills training guide</a>, with step-by-step practice routines for each.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it is for -->
+  <section class="section" id="who">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Who Is Sports Psychology For?</h2>
+        <p>Mental skills are not reserved for professionals. They help anyone who competes, coaches, or supports someone who does.</p>
+      </div>
+      <div class="icon-card-grid">
+        <div class="icon-card">
+          <span class="icon-disc"><Fragment set:html={medalIcon} /></span>
+          <h3>Athletes at Every Level</h3>
+          <p>From youth players learning to handle nerves to college and professional athletes chasing consistency, the techniques are the same. Only the competitive context changes.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon-disc"><Fragment set:html={usersIcon} /></span>
+          <h3>Coaches</h3>
+          <p>Coaches use sports psychology to communicate better, run practices that build confidence, manage team dynamics, and support athletes through slumps and pressure.</p>
+        </div>
+        <div class="icon-card">
+          <span class="icon-disc"><Fragment set:html={heartIcon} /></span>
+          <h3>Parents of Young Athletes</h3>
+          <p>Parents learn how to support without adding pressure: the right words after a loss, healthy perspectives on winning, and when to seek professional guidance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- History -->
+  <section class="section soft" id="history">
+    <div class="wrap">
+      <div class="prose">
+        <h2>A Short History of the Field</h2>
+        <p>Sports psychology grew the way most applied sciences do: practice came first, and formal study followed. Early in the twentieth century, psychologists began applying the young science of psychology to athletic performance, studying reaction time, focus, and learning. As competitive sport grew into a major cultural force, the questions got bigger: why do talented athletes collapse under pressure, what separates consistent performers from streaky ones, and can the mental side be trained on purpose?</p>
+        <p>Over the decades the field matured into a recognized discipline with its own research journals, university programs, and professional organizations. The Association for Applied Sport Psychology (AASP) became a central professional home for practitioners and researchers, advancing standards for applied work and administering the <a href="/degrees/certification/">Certified Mental Performance Consultant (CMPC)</a> credential. Today sports psychology spans laboratories studying performance under pressure and consultants working daily with athletes and teams, and the two sides keep informing each other.</p>
+        <p>What has stayed constant is the core insight: the mind is trainable. Every technique on this page exists because that insight held up, first in practice, then in research, then in practice again.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sports psych vs therapy -->
+  <section class="section" id="vs-therapy">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Sports Psychology vs. Therapy: The Distinction</h2>
+        <p>These are different professions with different goals. Knowing which one you need matters.</p>
+      </div>
+      <div class="prose">
+        <div class="table-wrap"><table class="data-table">
+          <thead>
+            <tr><th></th><th>Sports Psychology Consulting</th><th>Therapy / Counseling</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Primary focus</strong></td><td>Performance: helping you compete better</td><td>Mental health: helping you feel and function better</td></tr>
+            <tr><td><strong>Typical goals</strong></td><td>Focus, confidence, routines, handling pressure, bouncing back from mistakes</td><td>Treating anxiety disorders, depression, trauma, disordered eating, relationship issues</td></tr>
+            <tr><td><strong>Practitioner training</strong></td><td>Graduate training in sport psychology; credentials like the CMPC</td><td>Licensed mental health professional (psychologist, counselor, clinical social worker)</td></tr>
+            <tr><td><strong>When to choose it</strong></td><td>You want to perform more consistently and handle competitive pressure better</td><td>You are dealing with a mental health condition or persistent emotional difficulty</td></tr>
+          </tbody>
+        </table></div>
+        <p>The two can work together. An athlete might see a consultant for performance skills and a therapist for a clinical issue, and ethical practitioners refer across that line when they see it. If you are unsure which you need, start by describing your situation honestly to either professional and ask.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Working with a consultant -->
+  <section class="section soft" id="consultant">
+    <div class="wrap">
+      <div class="prose">
+        <h2>What Working With a Consultant Looks Like</h2>
+        <p>Many athletes are curious about consulting but unsure what actually happens. In general, the process has a recognizable shape. It starts with a conversation about your goals and the specific situations where your mind holds you back: the third set, the free throw line, the final round. The consultant listens for patterns, not just complaints.</p>
+        <p>Next comes an assessment of your mental strengths and habits. This is not a clinical diagnosis. It is a practical inventory: how you currently prepare, what you tell yourself under pressure, where your focus goes when things go wrong, and which skills you already use without realizing it. Some consultants use questionnaires; others work purely through conversation and observation.</p>
+        <p>From there you get a skills plan matched to your needs: two or three techniques to learn first, with clear practice assignments for training. You rehearse the skills in low-stakes settings, review what worked, adjust, and gradually test them in competition. Progress comes from repetition over weeks and months, the same way physical training works. There is no fixed timeline that fits everyone, and any consultant who promises one deserves skepticism.</p>
+        <p>To find a qualified practitioner, look for graduate training in sport psychology and recognized credentials such as the CMPC, and ask how they work before committing. Our <a href="/degrees/certification/">certification guide</a> explains what the credential means and what to ask a prospective consultant.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <div class="faq-answer"><p>{f.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Keep exploring -->
+  <section class="section soft" id="related">
+    <div class="wrap explore-wrap">
+      <h2>Keep Exploring</h2>
+      <div class="explore-links">
+        <a href="/mental-skills/">Mental Skills Training <Fragment set:html={arrow} /></a>
+        <a href="/degrees/">Sports Psychology Degrees <Fragment set:html={arrow} /></a>
+        <a href="/careers/">Careers in Sports Psychology <Fragment set:html={arrow} /></a>
+        <a href="/blog/">All Articles <Fragment set:html={arrow} /></a>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
 </BaseLayout>

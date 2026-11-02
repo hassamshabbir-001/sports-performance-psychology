@@ -5,19 +5,28 @@ interface Props {
   title: string;
   description: string;
   date: string; // ISO date string, e.g. "2026-11-10"
-  minutes: number; // estimated reading time
+  minutes: number; // estimated reading time (kept for API compat; not rendered)
   heroImage: string;
   heroAlt: string;
   heroWidth?: number;
   heroHeight?: number;
   sources?: { label: string; href: string }[];
   faqs?: { q: string; a: string }[];
+  deck?: string;
+  figcaption?: string;
+  toc?: { id: string; label: string }[];
+  ctaKicker?: string;
+  ctaTitle?: string;
+  ctaPrimary?: { label: string; href: string };
+  ctaSecondary?: { label: string; href: string };
 }
 
 const {
-  title, description, date, minutes,
+  title, description, date,
   heroImage, heroAlt, heroWidth = 1200, heroHeight = 675,
   sources = [], faqs = [],
+  deck = "", figcaption = "", toc = [],
+  ctaKicker = "", ctaTitle = "", ctaPrimary, ctaSecondary,
 } = Astro.props;
 
 const site = 'https://sportsperformancepsychology.com';
@@ -25,6 +34,7 @@ const pageUrl = new URL(Astro.url.pathname, site).href;
 const prettyDate = new Date(date + 'T00:00:00').toLocaleDateString('en-US', {
   year: 'numeric', month: 'long', day: 'numeric',
 });
+const authorPortrait = '/images/hassam-shabbir-author.webp';
 
 const schema = {
   "@context": "https://schema.org",
@@ -61,8 +71,8 @@ const schema = {
 ---
 <BaseLayout title={title} description={description} ogImage={heroImage}>
   <style>
-    /* Article design: deliberately distinct from hub pages (narrower column,
-       no curve hero, left-aligned headings, meta row, sources box). */
+    /* Article design: forensic parity. H1 + deck + byline, hero with
+       figcaption, sticky TOC sidebar, author card, end CTA. */
     .article { padding: 52px 0 80px; }
     .article .crumbs { font-size: 13.5px; color: var(--muted); margin: 0 0 18px; }
     .article .crumbs a { color: var(--muted); text-decoration: none; }
@@ -72,20 +82,76 @@ const schema = {
       font-size: 40px; line-height: 1.18; letter-spacing: -0.4px;
       color: var(--navy); font-weight: 800; margin: 0 0 14px; max-width: 760px;
     }
-    .article-meta {
-      display: flex; align-items: center; gap: 10px;
-      font-size: 14.5px; color: var(--muted); margin: 0 0 32px;
+    .article-deck {
+      font-size: 19px; line-height: 1.6; color: var(--muted);
+      margin: 0 0 28px; max-width: 680px;
     }
+    .article-byline {
+      display: flex; flex-wrap: wrap; align-items: center;
+      gap: 18px 28px; margin: 0 0 36px;
+      padding: 20px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    }
+    .article-author {
+      display: flex; align-items: center; gap: 14px;
+      text-decoration: none; color: var(--ink);
+    }
+    .article-author img {
+      width: 56px; height: 56px; border-radius: 50%;
+      object-fit: cover; display: block; flex: none;
+    }
+    .article-author span { display: flex; flex-direction: column; gap: 1px; }
+    .article-author small {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.2px; color: var(--muted);
+    }
+    .article-author strong { font-size: 16.5px; color: var(--navy); font-weight: 800; }
+    .article-author b { font-size: 13.5px; font-weight: 500; color: var(--muted); }
+    .article-author:hover strong { color: var(--red); }
+    .article-dates { display: flex; gap: 24px; margin: 0; padding: 0; }
+    .article-dates div { display: flex; flex-direction: column; gap: 2px; }
+    .article-dates dt { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; color: var(--muted); text-transform: uppercase; }
+    .article-dates dd { margin: 0; font-size: 14.5px; color: var(--ink); }
+    .article-process {
+      margin-left: auto; font-size: 14.5px; font-weight: 700;
+      color: var(--red); text-decoration: none; white-space: nowrap;
+    }
+    .article-process:hover { text-decoration: underline; }
     .article-hero { margin: 0 0 40px; }
     .article-hero img {
       width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover;
       border-radius: 16px; display: block;
     }
-    .article-prose { max-width: 760px; margin: 0 auto; }
+    .article-hero figcaption {
+      font-size: 13.5px; color: var(--muted); margin-top: 12px; line-height: 1.6;
+    }
+    .article-layout { display: block; }
+    @media (min-width: 1020px) {
+      .article-layout {
+        display: grid; grid-template-columns: 250px minmax(0, 1fr);
+        gap: 48px; align-items: start;
+      }
+      .article-toc { position: sticky; top: 96px; }
+    }
+    .article-toc {
+      background: var(--bg-soft); border: 1px solid var(--line);
+      border-radius: 14px; padding: 22px 24px; margin: 0 0 36px;
+      font-size: 14.5px;
+    }
+    @media (min-width: 1020px) { .article-toc { margin: 0; } }
+    .article-toc p {
+      font-size: 12px; font-weight: 800; letter-spacing: 1.4px;
+      color: var(--navy); margin: 0 0 12px;
+    }
+    .article-toc ol { margin: 0; padding-left: 20px; line-height: 1.5; }
+    .article-toc li { margin-bottom: 8px; }
+    .article-toc li:last-child { margin-bottom: 0; }
+    .article-toc a { color: var(--ink); text-decoration: none; }
+    .article-toc a:hover { color: var(--red); text-decoration: underline; }
+    .article-prose { max-width: 760px; }
     .article-prose p { line-height: 1.85; margin: 0 0 20px; color: var(--ink); font-size: 17px; }
     .article-prose h2 {
       font-size: 27px; color: var(--navy); font-weight: 800;
       margin: 44px 0 14px; letter-spacing: -0.3px; text-align: left;
+      scroll-margin-top: 100px;
     }
     .article-prose h3 { font-size: 20px; color: var(--navy); font-weight: 800; margin: 30px 0 10px; }
     .article-prose ul, .article-prose ol { margin: 0 0 20px; padding-left: 24px; line-height: 1.8; }
@@ -94,6 +160,7 @@ const schema = {
     .sources-box {
       background: var(--bg-soft); border: 1px solid var(--line);
       border-radius: 14px; padding: 26px 30px; margin-top: 52px;
+      max-width: 760px; scroll-margin-top: 100px;
     }
     .article-prose .takeaways {
       background: var(--bg-soft);
@@ -113,9 +180,42 @@ const schema = {
     .sources-box h2 { font-size: 20px; margin: 0 0 12px; color: var(--navy); font-weight: 800; }
     .sources-box ul { margin: 0; padding-left: 20px; }
     .sources-box li { margin-bottom: 8px; font-size: 15px; }
+    .article-author-card {
+      display: flex; gap: 24px; align-items: flex-start;
+      background: var(--bg-soft); border: 1px solid var(--line);
+      border-radius: 16px; padding: 30px; margin-top: 48px; max-width: 760px;
+    }
+    .article-author-card img {
+      width: 88px; height: 88px; border-radius: 50%;
+      object-fit: cover; display: block; flex: none;
+    }
+    .article-author-card p:first-child {
+      font-size: 12px; font-weight: 800; letter-spacing: 1.4px;
+      color: var(--muted); margin: 0 0 8px;
+    }
+    .article-author-card h2 { font-size: 22px; color: var(--navy); font-weight: 800; margin: 0 0 8px; }
+    .article-author-card p:nth-of-type(2) { font-size: 15.5px; line-height: 1.7; color: var(--ink); margin: 0 0 12px; }
+    .article-author-card a { font-size: 15px; font-weight: 700; color: var(--red); text-decoration: none; }
+    .article-author-card a:hover { text-decoration: underline; }
+    .article-next {
+      background: var(--navy); color: #fff;
+      border-radius: 16px; padding: 40px 36px; margin-top: 48px; max-width: 760px;
+    }
+    .article-next p {
+      font-size: 12px; font-weight: 800; letter-spacing: 1.6px;
+      color: rgba(255,255,255,.75); margin: 0 0 12px;
+    }
+    .article-next h2 { font-size: 28px; font-weight: 800; margin: 0 0 24px; letter-spacing: -0.3px; color: #fff; }
+    .article-next div { display: flex; flex-wrap: wrap; gap: 14px; }
+    .article-next .btn { display: inline-flex; align-items: center; gap: 8px; }
+    @media (max-width: 640px) {
+      .article-author-card { flex-direction: column; }
+      .article-next { padding: 30px 24px; }
+    }
     @media (max-width: 1020px) {
       .article { padding: 40px 0 60px; }
       .article h1 { font-size: 30px; }
+      .article-deck { font-size: 17px; }
       .article-prose p { font-size: 16px; }
     }
   </style>
@@ -124,30 +224,75 @@ const schema = {
     <div class="wrap">
       <p class="crumbs"><a href="/">Home</a> &rsaquo; <a href="/blog/">Blog</a> &rsaquo; <span>{title}</span></p>
       <h1>{title}</h1>
-      <p class="article-meta">
-        <time datetime={date}>{prettyDate}</time>
-        <span aria-hidden="true">&middot;</span>
-        <span>{minutes} min read</span>
-      </p>
+      {deck && <p class="article-deck">{deck}</p>}
+      <div class="article-byline">
+        <a class="article-author" href="/author/hassam-shabbir/">
+          <img src={authorPortrait} width="320" height="320" alt="Portrait of Hassam Shabbir" fetchpriority="high" />
+          <span>
+            <small>WRITTEN BY</small>
+            <strong>Hassam Shabbir</strong>
+            <b>Psychologist, Writer and Author</b>
+          </span>
+        </a>
+        <dl class="article-dates">
+          <div><dt>Published</dt><dd>{prettyDate}</dd></div>
+          <div><dt>Evidence reviewed</dt><dd>{prettyDate}</dd></div>
+        </dl>
+        <a class="article-process" href="/editorial-standards/">How we research <span aria-hidden="true">→</span></a>
+      </div>
     </div>
     <div class="wrap">
       <figure class="article-hero">
         <img src={heroImage} alt={heroAlt} width={heroWidth} height={heroHeight} fetchpriority="high" />
+        {figcaption && <figcaption>{figcaption}</figcaption>}
       </figure>
     </div>
     <div class="wrap">
-      <div class="article-prose">
-        <slot />
-        {sources.length > 0 && (
-          <aside class="sources-box" aria-label="Sources">
-            <h2>Sources</h2>
-            <ul>
-              {sources.map((s) => (
-                <li><a href={s.href} target="_blank" rel="noopener">{s.label}</a></li>
+      <div class="article-layout">
+        {toc.length > 0 && (
+          <aside class="article-toc" aria-label="On this page">
+            <p>ON THIS PAGE</p>
+            <ol>
+              {toc.map((t) => (
+                <li><a href={"#" + t.id}>{t.label}</a></li>
               ))}
-            </ul>
+            </ol>
           </aside>
         )}
+        <div class="article-body">
+          <div class="article-prose">
+            <slot />
+          </div>
+          {sources.length > 0 && (
+            <aside class="sources-box" id="sources" aria-label="Sources">
+              <h2>Sources</h2>
+              <ul>
+                {sources.map((s) => (
+                  <li><a href={s.href} target="_blank" rel="noopener">{s.label}</a></li>
+                ))}
+              </ul>
+            </aside>
+          )}
+          <aside class="article-author-card" aria-label="About the author">
+            <img src={authorPortrait} width="320" height="320" alt="Portrait of Hassam Shabbir" loading="lazy" decoding="async" />
+            <div>
+              <p>ABOUT THE AUTHOR</p>
+              <h2>Hassam Shabbir</h2>
+              <p>Hassam Shabbir is a psychologist, writer and author. His background and editorial standards are on his author profile.</p>
+              <a href="/author/hassam-shabbir/">Review author background <span aria-hidden="true">→</span></a>
+            </div>
+          </aside>
+          {ctaTitle && (
+            <aside class="article-next" aria-label="Continue learning">
+              {ctaKicker && <p>{ctaKicker}</p>}
+              <h2>{ctaTitle}</h2>
+              <div>
+                {ctaPrimary && <a class="btn btn-red" href={ctaPrimary.href}>{ctaPrimary.label} <span aria-hidden="true">→</span></a>}
+                {ctaSecondary && <a class="btn btn-outline" href={ctaSecondary.href}>{ctaSecondary.label} <span aria-hidden="true">→</span></a>}
+              </div>
+            </aside>
+          )}
+        </div>
       </div>
     </div>
   </article>
