@@ -6,12 +6,51 @@ const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke
 
 // Newest articles first; the homepage updates automatically when articles.ts grows.
 const popularArticles = [...articles].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 4);
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://sportsperformancepsychology.com/#website",
+      "url": "https://sportsperformancepsychology.com/",
+      "name": "Sports Performance Psychology",
+      "description": "Evidence-based guides on sports psychology: mental skills training, degree programs, careers, and salary data.",
+      "publisher": {
+        "@id": "https://sportsperformancepsychology.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://sportsperformancepsychology.com/#organization",
+      "name": "Sports Performance Psychology",
+      "url": "https://sportsperformancepsychology.com/",
+      "logo": "https://sportsperformancepsychology.com/images/Sports_Performance_Psychology_Logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@sportsperformancepsychology.com",
+        "contactType": "customer service"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sportsperformancepsychology.com/"
+        }
+      ]
+    }
+  ]
+};
 ---
 <BaseLayout
-  title="Sports Performance Psychology: Mental Skills, Degrees and Careers"
+  title="Sports Performance Psychology: Mental Skills & Careers"
   description="Evidence-based insights on sports psychology, mental skills, degrees, and careers. Learn how athletes build focus, confidence, and consistency."
   ogImage="/images/athlete-mental-preparation.webp"
 >
+  <article>
 
   <!-- 1. Hero -->
   <section class="hero">
@@ -27,7 +66,7 @@ const popularArticles = [...articles].sort((a, b) => b.date.localeCompare(a.date
       </div>
     </div>
     <div class="hero-media" aria-hidden="true">
-      <img class="photo" src="/images/athlete-mental-preparation.webp" alt="" width="1408" height="704" fetchpriority="high" />
+      <img class="photo" src="/images/athlete-mental-preparation.webp" alt="Female athlete sitting on a gym bench in focused mental preparation before training" width="1408" height="704" fetchpriority="high" />
       <svg class="hero-curve" viewBox="0 0 500 600" preserveAspectRatio="none">
         <path d="M100,0 C42,150 42,450 100,600" fill="none" stroke="#D62828" stroke-width="10"/>
       </svg>
@@ -217,4 +256,6 @@ const popularArticles = [...articles].sort((a, b) => b.date.localeCompare(a.date
     </div>
   </section>
 
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+  </article>
 </BaseLayout>

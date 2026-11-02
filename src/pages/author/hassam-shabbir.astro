@@ -1,10 +1,61 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": "https://sportsperformancepsychology.com/author/hassam-shabbir/#webpage",
+      "url": "https://sportsperformancepsychology.com/author/hassam-shabbir/",
+      "name": "Hassam Shabbir: Psychologist, Writer and Author Bio",
+      "isPartOf": {
+        "@id": "https://sportsperformancepsychology.com/#website"
+      },
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Hassam Shabbir",
+        "url": "https://sportsperformancepsychology.com/author/hassam-shabbir/",
+        "image": "https://sportsperformancepsychology.com/images/hassam-shabbir-author.webp",
+        "jobTitle": "Psychologist, Writer and Author",
+        "description": "Hassam Shabbir is the psychologist, writer and author behind Sports Performance Psychology.",
+        "sameAs": [
+          "https://www.instagram.com/hassam_shabbir_official/",
+          "https://www.linkedin.com/in/hassam-shabbir-sxo/",
+          "https://www.threads.net/@hassam_shabbir_official"
+        ]
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sportsperformancepsychology.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Author",
+          "item": "https://sportsperformancepsychology.com/author/hassam-shabbir/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Hassam Shabbir",
+          "item": "https://sportsperformancepsychology.com/author/hassam-shabbir/"
+        }
+      ]
+    }
+  ]
+};
 ---
 <BaseLayout
-  title="Hassam Shabbir | Psychologist, Writer and Author"
-  description="Hassam Shabbir: psychology graduate, writer and evidence reviewer behind Sports Performance Psychology. First-person profile, areas of focus, articles, and an honest boundary on what this writing is and is not."
+  title="Hassam Shabbir: Psychologist, Writer and Author Bio"
+  description="Hassam Shabbir is the psychologist, writer and author behind Sports Performance Psychology. Read his first-person profile, editorial role, and credentials."
 >
+  <article>
   <section class="page-hero">
     <div class="wrap">
       <p class="breadcrumbs"><a href="/">Home</a> / Author</p>
@@ -110,6 +161,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+  </article>
   <style>
     .kicker {
       text-transform: uppercase;

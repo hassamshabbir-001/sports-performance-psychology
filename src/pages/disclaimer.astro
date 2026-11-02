@@ -1,10 +1,43 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://sportsperformancepsychology.com/disclaimer/#webpage",
+      "url": "https://sportsperformancepsychology.com/disclaimer/",
+      "name": "Disclaimer for Sports Performance Psychology Website",
+      "description": "Disclaimer for Sports Performance Psychology: educational content, no professional advice, and advertising disclosure.",
+      "isPartOf": {
+        "@id": "https://sportsperformancepsychology.com/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sportsperformancepsychology.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Disclaimer",
+          "item": "https://sportsperformancepsychology.com/disclaimer/"
+        }
+      ]
+    }
+  ]
+};
 ---
 <BaseLayout
-  title="Disclaimer | Sports Performance Psychology"
-  description="Disclaimer for Sports Performance Psychology: educational content, no professional advice, and advertising disclosure."
+  title="Disclaimer for Sports Performance Psychology Website"
+  description="Disclaimer for Sports Performance Psychology: educational content, no professional advice, and advertising disclosure. Last updated November 2026."
 >
+  <article>
   <section class="page-hero">
     <div class="wrap">
       <p class="breadcrumbs"><a href="/">Home</a> / Disclaimer</p>
@@ -30,4 +63,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
   </section>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+  </article>
 </BaseLayout>

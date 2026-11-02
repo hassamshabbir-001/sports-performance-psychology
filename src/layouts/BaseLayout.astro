@@ -3,8 +3,10 @@ interface Props {
   title: string;
   description: string;
   ogImage?: string;
+  ogType?: string;
+  articleDate?: string;
 }
-const { title, description, ogImage = '/images/athlete-mental-preparation.webp' } = Astro.props;
+const { title, description, ogImage = '/images/athlete-mental-preparation.webp', ogType = 'website', articleDate } = Astro.props;
 const site = 'https://sportsperformancepsychology.com';
 const canonical = new URL(Astro.url.pathname, site).href;
 const ogAbsolute = new URL(ogImage, site).href;
@@ -57,7 +59,7 @@ const current = Astro.url.pathname;
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={ogType} />
   <meta property="og:site_name" content="Sports Performance Psychology" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
@@ -67,6 +69,7 @@ const current = Astro.url.pathname;
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogAbsolute} />
+  {articleDate && (<><meta property="article:published_time" content={articleDate} /><meta property="article:author" content="Hassam Shabbir" /></>)}
   <style is:global>
     :root {
       --red: #D62828;
@@ -317,7 +320,7 @@ const current = Astro.url.pathname;
     }
     .footer-brand img { height: 46px; width: auto; margin-bottom: 16px; background: #fff; border-radius: 10px; padding: 6px 10px; }
     .footer-brand p { font-size: 14px; margin: 0; max-width: 300px; }
-    .site-footer h4 { color: #fff; font-size: 15px; margin: 0 0 16px; font-weight: 700; }
+    .site-footer h3 { color: #fff; font-size: 15px; margin: 0 0 16px; font-weight: 700; }
     .footer-links { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
     .footer-links a { color: #C6CEE2; text-decoration: none; font-size: 14px; }
     .footer-links a:hover { color: #fff; }
@@ -588,7 +591,7 @@ const current = Astro.url.pathname;
           <p>A trusted educational resource on sports psychology, mental skills, degrees, career paths, and athletic performance.</p>
         </div>
         <div>
-          <h4>Quick Links</h4>
+          <h3>Quick Links</h3>
           <ul class="footer-links">
             <li><a href="/">Home</a></li>
             <li><a href="/what-is-sports-psychology/">What Is Sports Psychology?</a></li>
@@ -599,7 +602,7 @@ const current = Astro.url.pathname;
           </ul>
         </div>
         <div>
-          <h4>Topics</h4>
+          <h3>Topics</h3>
           <ul class="footer-links">
             <li><a href="/degrees/">Degrees and Programs</a></li>
             <li><a href="/careers/">Careers and Job Opportunities</a></li>
@@ -608,7 +611,7 @@ const current = Astro.url.pathname;
           </ul>
         </div>
         <div>
-          <h4>Disclaimer</h4>
+          <h3>Disclaimer</h3>
           <p class="footer-disclaimer">Content on this site is for educational purposes only and is not a substitute for professional medical or psychological advice, diagnosis, or treatment.</p>
         </div>
       </div>

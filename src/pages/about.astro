@@ -2,11 +2,44 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "@id": "https://sportsperformancepsychology.com/about/#webpage",
+      "url": "https://sportsperformancepsychology.com/about/",
+      "name": "About Sports Performance Psychology: Our Mission",
+      "description": "Why Sports Performance Psychology exists: clear, evidence-based guidance on mental skills, degrees, and careers in sport.",
+      "isPartOf": {
+        "@id": "https://sportsperformancepsychology.com/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sportsperformancepsychology.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "About",
+          "item": "https://sportsperformancepsychology.com/about/"
+        }
+      ]
+    }
+  ]
+};
 ---
 <BaseLayout
-  title="About Sports Performance Psychology"
+  title="About Sports Performance Psychology: Mission & Values"
   description="Why Sports Performance Psychology exists: clear, evidence-based guidance on mental skills, degrees, and careers in sports psychology."
 >
+  <article>
   <section class="page-hero">
     <div class="wrap">
       <p class="breadcrumbs"><a href="/">Home</a> / About</p>
@@ -88,6 +121,8 @@ const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke
       </nav>
     </div>
   </section>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+  </article>
 </BaseLayout>
 
 <style>

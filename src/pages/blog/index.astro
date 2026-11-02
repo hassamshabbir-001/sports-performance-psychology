@@ -29,10 +29,11 @@ const schema = {
 };
 ---
 <BaseLayout
-  title="Blog: Sports Psychology Articles and Guides"
+  title="Sports Psychology Blog: Articles, Guides & Research"
   description="In-depth articles and guides on sports psychology: mental skills, degrees, careers, salary, and performance techniques for athletes."
   ogImage="/images/athlete-preparation-track.webp"
 >
+  <article>
   <!-- Inner hero -->
   <section class="inner-hero">
     <div class="wrap inner-hero-grid">
@@ -52,7 +53,7 @@ const schema = {
             <article class="card">
               <img src={a.image} alt={a.alt} width={a.width ?? 1200} height={a.height ?? 675} loading="lazy" />
               <div class="card-body">
-                <h3>{a.title}</h3>
+                <h2>{a.title}</h2>
                 <p>{a.excerpt}</p>
                 <a class="card-link" href={a.href}>Read More <Fragment set:html={arrow} /></a>
               </div>
@@ -78,4 +79,5 @@ const schema = {
   )}
 
   <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+  </article>
 </BaseLayout>

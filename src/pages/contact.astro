@@ -1,10 +1,43 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": "https://sportsperformancepsychology.com/contact/#webpage",
+      "url": "https://sportsperformancepsychology.com/contact/",
+      "name": "Contact Sports Performance Psychology: Get in Touch",
+      "description": "Contact Sports Performance Psychology with questions, feedback, or topic suggestions. Email info@sportsperformancepsychology.com and we will reply as soon as we can.",
+      "isPartOf": {
+        "@id": "https://sportsperformancepsychology.com/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sportsperformancepsychology.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact",
+          "item": "https://sportsperformancepsychology.com/contact/"
+        }
+      ]
+    }
+  ]
+};
 ---
 <BaseLayout
-  title="Contact Sports Performance Psychology"
-  description="Contact Sports Performance Psychology with questions, feedback, or topic suggestions."
+  title="Contact Sports Performance Psychology: Get in Touch"
+  description="Contact Sports Performance Psychology with questions, feedback, or topic suggestions. Email info@sportsperformancepsychology.com for a personal reply."
 >
+  <article>
   <section class="page-hero">
     <div class="wrap">
       <p class="breadcrumbs"><a href="/">Home</a> / Contact</p>
@@ -14,7 +47,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
   <section class="page-body">
     <div class="wrap">
-      <p>Send your message to <a href="mailto:info@sportsperformancepsychology.com">info@sportsperformancepsychology.com</a> and we will get back to you as soon as we can. For topic ideas, tell us what you are an athlete, coach, parent, or student working on, and we will consider it for a future guide.</p>
+      <p>Send your message to <a href="mailto:info@sportsperformancepsychology.com">info@sportsperformancepsychology.com</a> and we will get back to you as soon as we can.</p>
+      <h2>What to Include in Your Message</h2>
+      <p>For topic ideas, tell us whether you are an athlete, coach, parent, or student, and what you are working on. We read every message and consider strong suggestions for future guides. We do not provide individual coaching or clinical advice through email.</p>
     </div>
   </section>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+  </article>
 </BaseLayout>

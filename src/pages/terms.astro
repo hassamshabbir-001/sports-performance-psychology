@@ -1,10 +1,43 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://sportsperformancepsychology.com/terms/#webpage",
+      "url": "https://sportsperformancepsychology.com/terms/",
+      "name": "Terms and Conditions | Sports Performance Psychology",
+      "description": "Terms and conditions for using Sports Performance Psychology: acceptable use, intellectual property, and limitations.",
+      "isPartOf": {
+        "@id": "https://sportsperformancepsychology.com/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sportsperformancepsychology.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Terms and Conditions",
+          "item": "https://sportsperformancepsychology.com/terms/"
+        }
+      ]
+    }
+  ]
+};
 ---
 <BaseLayout
   title="Terms and Conditions | Sports Performance Psychology"
-  description="Terms and conditions for using Sports Performance Psychology: acceptable use, intellectual property, and limitations."
+  description="Terms and conditions for using Sports Performance Psychology: acceptable use, intellectual property, and limitations. Last updated November 2026."
 >
+  <article>
   <section class="page-hero">
     <div class="wrap">
       <p class="breadcrumbs"><a href="/">Home</a> / Terms and Conditions</p>
@@ -34,4 +67,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
   </section>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+  </article>
 </BaseLayout>
