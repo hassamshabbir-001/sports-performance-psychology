@@ -115,11 +115,20 @@ const current = Astro.url.pathname;
     .btn-outline:hover { border-color: var(--red); color: var(--red); }
     .btn svg { width: 16px; height: 16px; }
 
-    /* Hero */
-    .hero { background: var(--bg-soft); overflow: hidden; }
-    .hero-grid {
-      display: grid; grid-template-columns: 1fr 1.05fr;
-      gap: 48px; align-items: center; padding: 64px 0;
+    /* Hero: text left, full-bleed image panel right with red curve */
+    .hero { position: relative; background: var(--bg-soft); overflow: hidden; }
+    .hero-grid { position: relative; z-index: 2; padding: 96px 0; }
+    .hero-copy { max-width: 540px; }
+    .hero-media {
+      position: absolute; top: 0; right: 0; bottom: 0;
+      width: 48%; z-index: 1; pointer-events: none;
+    }
+    .hero-media .swoosh {
+      position: absolute; top: 0; left: -58px;
+      width: 120px; height: 100%;
+    }
+    .hero-media img.photo {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
     .eyebrow {
       text-transform: uppercase; letter-spacing: 2.5px;
@@ -133,16 +142,6 @@ const current = Astro.url.pathname;
     .hero h1 .accent { color: var(--red); }
     .hero p.lead { font-size: 17.5px; color: var(--muted); margin: 0 0 30px; max-width: 480px; }
     .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
-    .hero-media { position: relative; }
-    .hero-media .swoosh {
-      position: absolute; top: -8%; left: -64px;
-      width: 120px; height: 116%; z-index: 0; pointer-events: none;
-    }
-    .hero-media img.photo {
-      position: relative; z-index: 1;
-      width: 100%; aspect-ratio: 16 / 9; height: auto; object-fit: cover;
-      border-radius: 18px; box-shadow: var(--shadow);
-    }
 
     /* Quick strip */
     .quick-strip { background: #fff; border-bottom: 1px solid var(--line); }
@@ -308,9 +307,12 @@ const current = Astro.url.pathname;
       .main-nav ul { flex-direction: column; align-items: stretch; gap: 0; padding: 8px 24px 18px; }
       .main-nav a { padding: 12px 0; border-bottom: 1px solid var(--line); }
       .main-nav a.active { border-bottom: 1px solid var(--line); border-left: 3px solid var(--red); padding-left: 10px; }
-      .hero-grid { grid-template-columns: 1fr; padding: 48px 0; gap: 36px; }
+      .hero-grid { padding: 52px 0 0; }
       .hero h1 { font-size: 38px; }
+      .hero-copy { max-width: none; }
+      .hero-media { position: relative; width: 100%; margin-top: 36px; }
       .hero-media .swoosh { display: none; }
+      .hero-media img.photo { aspect-ratio: 16 / 10; height: auto; }
       .pillar-grid, .subscribe-grid { grid-template-columns: 1fr; gap: 0; }
       .pillar-media img, .subscribe-media img { min-height: 220px; max-height: 300px; }
       .pillar-media::after, .subscribe-media::after { display: none; }
