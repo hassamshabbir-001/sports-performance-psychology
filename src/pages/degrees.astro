@@ -1,22 +1,275 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const capIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5L2 9z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v5"/></svg>';
+const medalIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.5L7 21l5-2.5L17 21l-1.5-7.5"/></svg>';
+const laptopIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg>';
+
+const faqs = [
+  {
+    q: "What degree do I need to work in sports psychology?",
+    a: "Most professional roles in sports psychology require a master's degree at minimum. With a bachelor's degree, you can qualify for entry-level roles such as coaching support, athletic department assistance, or fitness and wellness positions. Master's programs prepare you for applied work with athletes and teams, while a doctoral degree (PhD or PsyD) is typically needed for licensed clinical practice, university teaching, and advanced research roles."
+  },
+  {
+    q: "Is a master's in sports psychology worth it?",
+    a: "For most people who want to work directly with athletes, yes. A master's degree is the standard entry point for applied sports psychology roles, and it is also the minimum education required for the Certified Mental Performance Consultant (CMPC) credential. Before enrolling, compare each program's curriculum, supervised experience opportunities, faculty expertise, and graduate outcomes, since program quality varies widely."
+  },
+  {
+    q: "Can I earn a sports psychology degree online?",
+    a: "Yes. Many accredited universities now offer online bachelor's and master's programs in sports psychology or related fields such as kinesiology with a sport psychology concentration. Online programs cover the same core coursework as on-campus options. If you plan to pursue certification or licensure, confirm that the program includes the supervised practical experience hours you will need, and check how those hours are arranged for distance students."
+  },
+  {
+    q: "What are the admission requirements for sports psychology graduate programs?",
+    a: "Requirements vary by school, but most master's programs ask for a bachelor's degree (often in psychology, kinesiology, or a related field), a minimum GPA, letters of recommendation, a personal statement, and sometimes GRE scores. Doctoral programs are more selective and usually expect research experience and a strong academic record. Always check the admissions page of each specific program for current requirements."
+  },
+  {
+    q: "How long does it take to become a sports psychologist?",
+    a: "A bachelor's degree typically takes four years of full-time study. A master's degree adds one to two years, and a doctoral degree adds another three to six years. If you pursue the CMPC certification, you will also need 400 hours of mentored experience, which many students complete during graduate study. In total, the path from undergraduate study to independent professional practice often takes six to ten years."
+  },
+  {
+    q: "What is the difference between a sports psychologist and a mental performance consultant?",
+    a: "The title 'psychologist' is legally protected in most US states and generally requires a doctoral degree plus state licensure. A mental performance consultant, including those with the CMPC credential, typically focuses on performance enhancement skills such as goal setting, focus, and confidence, and usually holds a master's degree or higher. Both roles help athletes, but their training, scope, and legal titles differ."
+  }
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://sportsperformancepsychology.com/degrees/#webpage",
+      "url": "https://sportsperformancepsychology.com/degrees/",
+      "name": "Sports Psychology Degree: Programs, Careers & Salary",
+      "description": "Explore sports psychology degree programs: bachelor's, master's, and PhD options, admission requirements, costs, careers, and salary outlook in the US.",
+      "isPartOf": { "@id": "https://sportsperformancepsychology.com/#website" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sportsperformancepsychology.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Degrees", "item": "https://sportsperformancepsychology.com/degrees/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map((f) => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+};
 ---
 <BaseLayout
-  title="Sports Psychology Degree: Programs, Careers and Salary"
+  title="Sports Psychology Degree: Programs, Careers & Salary"
   description="Explore sports psychology degree programs: bachelor's, master's, and PhD options, admission requirements, costs, careers, and salary outlook in the US."
-  ogImage="/images/training-plan-equipment.webp"
+  ogImage="/images/degree-guides-hero.jpg"
 >
-  <section class="page-hero">
-    <div class="wrap">
-      <p class="breadcrumbs"><a href="/">Home</a> / Degrees</p>
-      <h1>Sports Psychology Degrees</h1>
-      <p>From bachelor's to master's and PhD programs, compare degree levels, online options, and certification paths in sports psychology.</p>
+
+  <!-- Inner hero -->
+  <section class="inner-hero">
+    <div class="wrap inner-hero-grid">
+      <div class="inner-hero-copy">
+        <p class="crumbs"><a href="/">Home</a> &rsaquo; Degrees</p>
+        <h1>Sports Psychology <span class="accent">Degree Guides</span></h1>
+        <p class="lead">Explore bachelor's, master's, doctoral, and online degree options in sports psychology, including programs, requirements, and costs.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-red" href="#degree-options">Compare Degrees <Fragment set:html={arrow} /></a>
+          <a class="btn btn-outline" href="/blog/">All Degree Articles</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-media" aria-hidden="true">
+      <img class="photo" src="/images/degree-guides-hero.jpg" alt="Graduation cap resting on a stack of books" width="452" height="351" fetchpriority="high" style="object-position: 60% 30%;" />
+      <svg class="hero-curve" viewBox="0 0 500 600" preserveAspectRatio="none">
+        <path d="M100,0 C42,150 42,450 100,600" fill="none" stroke="#D62828" stroke-width="10"/>
+      </svg>
     </div>
   </section>
-  <section class="page-body">
+
+  <!-- Quick strip -->
+  <div class="quick-strip">
     <div class="wrap">
-      <p>A sports psychology degree prepares you to help athletes perform at their best. Most professional roles require a master's degree or higher, with doctoral programs opening doors to licensed practice, research, and university teaching. Online programs have made graduate study more accessible for working professionals.</p>
-      <p>Our full guides will compare program types, accreditation, admission requirements, and costs, so you can choose the path that fits your goals. Pair this with our <a href="/careers/">careers guide</a> to see where each degree level can take you.</p>
+      <div class="quick-grid">
+        <a class="quick-item" href="#bachelors"><Fragment set:html={capIcon} /><span>Bachelor's</span></a>
+        <a class="quick-item" href="#masters"><Fragment set:html={capIcon} /><span>Master's</span></a>
+        <a class="quick-item" href="#doctoral"><Fragment set:html={medalIcon} /><span>Doctoral (PhD)</span></a>
+        <a class="quick-item" href="#online"><Fragment set:html={laptopIcon} /><span>Online Programs</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <section class="section">
+    <div class="wrap">
+      <div class="prose">
+        <h2>Choosing a Sports Psychology Degree</h2>
+        <p>A sports psychology degree prepares you to help athletes and performers build the mental skills behind consistent performance: focus, confidence, composure under pressure, and effective routines. Programs combine psychology coursework with sport science, covering topics such as motivation, motor learning, team dynamics, and performance enhancement techniques.</p>
+        <p>The right degree level depends on where you want to work. If your goal is to work one-on-one with athletes or teams, plan on graduate study. A bachelor's degree builds the foundation and opens doors to coaching, athletic support, and wellness roles, while a master's degree is the standard credential for applied practice. Doctoral study is the route to licensure as a psychologist, university faculty positions, and research careers.</p>
+        <p>Costs vary widely by institution, program format, and whether you study in state or out of state, so treat tuition figures as school-specific and always confirm current numbers with each program. Use this guide to compare degree levels, then explore our <a href="/careers/">careers guide</a> to see where each path can take you, and our <a href="/what-is-sports-psychology/">overview of sports psychology</a> if you are new to the field.</p>
+
+        <h2 id="degree-options">Sports Psychology Degree Options</h2>
+        <p>The table below gives a clear overview of degree levels, typical timeframes, and career focus. Timeframes assume full-time study; part-time and online formats usually take longer.</p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Degree Level</th>
+                <th scope="col">Typical Length</th>
+                <th scope="col">Focus</th>
+                <th scope="col">Common Careers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Bachelor's</th>
+                <td>4 years</td>
+                <td>Foundations in psychology and sport science</td>
+                <td>Coaching, athletics support, entry-level wellness roles</td>
+              </tr>
+              <tr>
+                <th scope="row">Master's</th>
+                <td>1-2 years</td>
+                <td>Applied sports psychology and performance consulting</td>
+                <td>Sport psychology practitioner (non-clinical), performance consultant</td>
+              </tr>
+              <tr>
+                <th scope="row">Doctoral (PhD/PsyD)</th>
+                <td>3-6 years</td>
+                <td>Advanced research, clinical training, and specialization</td>
+                <td>Licensed psychologist, researcher, university faculty</td>
+              </tr>
+              <tr>
+                <th scope="row">Online Programs</th>
+                <td>Flexible</td>
+                <td>Same core knowledge with online delivery</td>
+                <td>Varies by degree level (bachelor's, master's, or doctoral)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">Timeframes are typical for full-time study in the US. Program names, curricula, and requirements differ by school.</p>
+      </div>
     </div>
   </section>
+
+  <!-- Detailed degree guides -->
+  <section class="section soft">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Detailed Degree Guides</h2>
+        <p>Explore in-depth guides for each degree path.</p>
+      </div>
+
+      <div class="degree-block" id="bachelors">
+        <div>
+          <img src="/images/athlete-preparation-track.webp" alt="Athlete warming up on a running track at sunrise" width="1408" height="704" loading="lazy" />
+        </div>
+        <div>
+          <h3>Bachelor's Degrees</h3>
+          <p>A bachelor's degree in sports psychology, psychology with a sport concentration, or kinesiology gives you the foundation for everything that follows. Expect core courses in general psychology, statistics, research methods, and exercise science, plus introductory sport psychology topics such as motivation, confidence, and team dynamics.</p>
+          <p>With a bachelor's alone, most graduates work in coaching, youth sport programs, athletic department support, corporate wellness, or fitness roles. The degree also prepares you for graduate school, which is where professional sport psychology training begins. When comparing programs, look for:</p>
+          <ul>
+            <li>Faculty with applied sport psychology experience, not just general psychology</li>
+            <li>Internship or practicum placements with athletic programs</li>
+            <li>Strong statistics and research methods preparation for graduate applications</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="degree-block" id="masters">
+        <div>
+          <img src="/images/training-plan-equipment.webp" alt="Coach reviewing a training plan with equipment on the field" width="1408" height="704" loading="lazy" />
+        </div>
+        <div>
+          <h3>Master's Programs</h3>
+          <p>The master's degree is the workhorse credential of applied sports psychology. Programs typically run one to two years and cover performance enhancement techniques, counseling skills, ethical practice, and supervised experience working with athletes. Many programs are designed to meet the coursework requirements for the <a href="/degrees/certification/">CMPC certification</a>.</p>
+          <p>Graduates commonly work as mental performance consultants with teams, academies, and individual athletes, or in athletic departments and private practice settings (within their scope of training). When evaluating programs, prioritize:</p>
+          <ul>
+            <li>Supervised practicum hours with real athletes or teams</li>
+            <li>Alignment with CMPC knowledge areas if certification is your goal</li>
+            <li>Graduate employment outcomes and alumni network in sport settings</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="degree-block" id="doctoral">
+        <div>
+          <img src="/images/team-communication-soccer.webp" alt="Soccer team in a discussion on the field" width="1408" height="704" loading="lazy" />
+        </div>
+        <div>
+          <h3>Doctoral (PhD) Degrees</h3>
+          <p>A PhD in sports psychology or a related field prepares you for research, university teaching, and the highest levels of practice. PhD programs emphasize original research, advanced statistics, and deep specialization, and typically take three to six years beyond the bachelor's degree. Some students pursue a PsyD with a stronger clinical emphasis.</p>
+          <p>The doctorate is generally required for state licensure as a psychologist, which matters if you want to diagnose or treat mental health conditions in athletes. It is also the standard credential for tenure-track faculty roles. Doctoral programs are competitive and often funded through assistantships, so research fit with faculty matters as much as grades.</p>
+        </div>
+      </div>
+
+      <div class="degree-block" id="online">
+        <div>
+          <img src="/images/runner-flexibility-warmup.webp" alt="Runner doing flexibility exercises during warmup" width="1408" height="704" loading="lazy" />
+        </div>
+        <div>
+          <h3>Online Degrees</h3>
+          <p>Online bachelor's and master's programs have made sports psychology education accessible to working professionals and students far from campus. Reputable online programs cover the same core curriculum as their on-campus counterparts, with lectures, discussions, and assignments delivered remotely.</p>
+          <p>The key question for any online program is how it handles supervised experience. Applied training with athletes cannot be completed entirely on a screen, so strong programs arrange local practicum placements and regular faculty supervision. Before enrolling, ask how practicum hours are structured, whether the program supports CMPC certification requirements, and what career services are available to distance learners.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <div class="faq-answer"><p>{f.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related articles -->
+  <section class="section soft" id="related">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Related Articles</h2>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <img src="/images/basketball-focus-routine.webp" alt="Basketball player focused before taking a shot" width="1408" height="704" loading="lazy" />
+          <div class="card-body">
+            <h3>Sports Psychology Certification</h3>
+            <p>The CMPC credential explained: eligibility, exam details, costs, and whether certification is worth it.</p>
+            <a class="card-link" href="/degrees/certification/">Read Guide <Fragment set:html={arrow} /></a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="/images/team-communication-soccer.webp" alt="Soccer team talking together on the field" width="1408" height="704" loading="lazy" />
+          <div class="card-body">
+            <h3>Careers in Sports Psychology</h3>
+            <p>Job roles, employers, salary ranges, and the career outlook for sports psychology professionals.</p>
+            <a class="card-link" href="/careers/">Read Guide <Fragment set:html={arrow} /></a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="/images/athlete-mental-preparation.webp" alt="Athlete in focused mental preparation" width="1408" height="704" loading="lazy" />
+          <div class="card-body">
+            <h3>Mental Skills Training</h3>
+            <p>Practical techniques like visualization, routines, and self-talk that athletes use to perform.</p>
+            <a class="card-link" href="/mental-skills/">Read Guide <Fragment set:html={arrow} /></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
 </BaseLayout>

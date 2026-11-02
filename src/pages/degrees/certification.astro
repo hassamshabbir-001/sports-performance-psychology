@@ -1,0 +1,276 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const medalIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.5L7 21l5-2.5L17 21l-1.5-7.5"/></svg>';
+const checkIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 12l3 3 5-6"/></svg>';
+const bookIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-2v14c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2z"/><path d="M12 6v14"/></svg>';
+const laptopIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg>';
+const docIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>';
+const clockIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>';
+const shieldIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>';
+const calIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>';
+
+const faqs = [
+  {
+    q: "What is the CMPC certification?",
+    a: "CMPC stands for Certified Mental Performance Consultant. It is the leading professional credential in applied sport psychology, administered by the Association for Applied Sport Psychology (AASP). It signals that the holder has completed graduate-level coursework, 400 hours of mentored experience, and a certification exam covering the knowledge areas of the field."
+  },
+  {
+    q: "What are the eligibility requirements for CMPC certification?",
+    a: "Candidates need a master's or doctoral degree in sport science, psychology, or a related field from a regionally accredited institution, coursework across eight specified knowledge areas, and 400 hours of mentored applied experience. AASP publishes the full requirements in its Candidate Handbook, which is the authoritative source since details can change."
+  },
+  {
+    q: "How long does CMPC certification take?",
+    a: "Most candidates complete the requirements during or shortly after graduate study. The 400 mentored hours are often earned across one to two years of supervised practicum work, and the coursework is typically part of a master's program. Timelines vary with program structure and how quickly you arrange supervised experience."
+  },
+  {
+    q: "How do I maintain my CMPC certification?",
+    a: "CMPC certification is valid for five years and is renewable. Renewal requires continuing education and ongoing professional activity as described in AASP's recertification guidelines. Check the current AASP Candidate Handbook for the exact renewal requirements before your cycle ends."
+  },
+  {
+    q: "Is sports psychology certification worth it?",
+    a: "For practitioners who want to work directly with athletes and teams, the CMPC is widely recognized by employers, including collegiate athletic departments and sport organizations. It is not a license to practice psychology, and it is not required for every role, but it is the field's clearest signal of applied competence. Weigh the time and cost against your career goals."
+  }
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://sportsperformancepsychology.com/degrees/certification/#webpage",
+      "url": "https://sportsperformancepsychology.com/degrees/certification/",
+      "name": "Sports Psychology Certification: CMPC & More",
+      "description": "Sports psychology certification explained: the CMPC credential, eligibility requirements, exam details, costs, and whether it is worth it.",
+      "isPartOf": { "@id": "https://sportsperformancepsychology.com/#website" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sportsperformancepsychology.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Degrees", "item": "https://sportsperformancepsychology.com/degrees/" },
+        { "@type": "ListItem", "position": 3, "name": "Certification", "item": "https://sportsperformancepsychology.com/degrees/certification/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map((f) => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+};
+---
+<BaseLayout
+  title="Sports Psychology Certification: CMPC & More"
+  description="Sports psychology certification explained: the CMPC credential, eligibility requirements, exam details, costs, and whether it is worth it."
+  ogImage="/images/certification-exam-resources-hero.jpg"
+>
+
+  <!-- Inner hero -->
+  <section class="inner-hero">
+    <div class="wrap inner-hero-grid">
+      <div class="inner-hero-copy">
+        <p class="crumbs"><a href="/">Home</a> &rsaquo; <a href="/degrees/">Degrees</a> &rsaquo; Certification</p>
+        <h1>Sports Psychology <span class="accent">Certification &amp; Exam Resources</span></h1>
+        <p class="lead">A complete guide to the CMPC certification, requirements, exam process, and study resources for aspiring sport psychology professionals.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-red" href="#overview">Get Started <Fragment set:html={arrow} /></a>
+          <a class="btn btn-outline" href="#exam-prep">Exam Resources</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-media" aria-hidden="true">
+      <img class="photo" src="/images/certification-exam-resources-hero.jpg" alt="Notebook with exam preparation notes and a pen" width="442" height="351" fetchpriority="high" style="object-position: 50% 30%;" />
+      <svg class="hero-curve" viewBox="0 0 500 600" preserveAspectRatio="none">
+        <path d="M100,0 C42,150 42,450 100,600" fill="none" stroke="#D62828" stroke-width="10"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Quick strip -->
+  <div class="quick-strip">
+    <div class="wrap">
+      <div class="quick-grid">
+        <a class="quick-item" href="#overview"><Fragment set:html={medalIcon} /><span>CMPC Overview</span></a>
+        <a class="quick-item" href="#requirements"><Fragment set:html={checkIcon} /><span>Requirements</span></a>
+        <a class="quick-item" href="#exam-prep"><Fragment set:html={laptopIcon} /><span>Exam Prep</span></a>
+        <a class="quick-item" href="#study-resources"><Fragment set:html={bookIcon} /><span>Study Resources</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overview -->
+  <section class="section" id="overview">
+    <div class="wrap">
+      <div class="prose">
+        <h2>CMPC Certification: An Overview</h2>
+        <p>The Certified Mental Performance Consultant (CMPC) is the leading credential in sport and performance psychology. It is administered by the Association for Applied Sport Psychology (AASP), the international professional organization for the field, founded in 1986. The credential demonstrates advanced knowledge and practical competence in mental performance consulting.</p>
+        <p>Unlike academic degrees, which certify education, the CMPC certifies that you have combined graduate education with supervised applied experience and passed a comprehensive exam. Employers, from collegiate athletic departments to professional sport organizations, recognize it as the field's standard mark of an applied practitioner.</p>
+        <p>It is important to understand what the CMPC is not. It is not a license to practice psychology; the title "psychologist" remains legally protected and requires a doctoral degree plus state licensure. The CMPC focuses on performance enhancement: helping athletes and performers build the mental skills behind consistent execution.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- At a glance -->
+  <section class="section soft" id="requirements">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>CMPC at a Glance</h2>
+        <p>The core requirements, summarized. Confirm current details in the AASP Candidate Handbook.</p>
+      </div>
+      <div class="glance-grid">
+        <div class="glance-card">
+          <Fragment set:html={docIcon} />
+          <h3>Eligibility</h3>
+          <p>Master's or doctoral degree in sport science, psychology, or a related field from a regionally accredited institution.</p>
+        </div>
+        <div class="glance-card">
+          <Fragment set:html={calIcon} />
+          <h3>Mentored Experience</h3>
+          <p>400 hours of mentored applied experience working in performance settings under qualified supervision.</p>
+        </div>
+        <div class="glance-card">
+          <Fragment set:html={bookIcon} />
+          <h3>Exam</h3>
+          <p>A comprehensive certification exam covering the eight knowledge areas of applied sport psychology.</p>
+        </div>
+        <div class="glance-card">
+          <Fragment set:html={shieldIcon} />
+          <h3>Validity</h3>
+          <p>5 years, renewable with continuing education and professional activity.</p>
+        </div>
+      </div>
+      <div class="prose" style="max-width: 820px; margin: 32px auto 0;">
+          <h3>Coursework: the eight knowledge areas</h3>
+          <p>AASP requires coursework across eight knowledge areas: Professional Ethics and Standards; Sport Psychology; Sport Science; Psychopathology; Helping Relationships; Research Methods and Statistics; Psychological Foundations of Behavior; and Diversity and Culture. Many graduate programs map their curricula to these areas, which is worth confirming before you enroll if certification is your goal.</p>
+          <h3>Application fee</h3>
+          <p>AASP charges an application fee, listed as $375 at the time of writing. Fees change over time, so verify the current amount on the AASP website before applying.</p>
+          <div class="disclaimer-box"><strong>Note:</strong> requirements change. Always confirm current eligibility, fees, and exam details in the official AASP Candidate Handbook at <a href="https://appliedsportpsych.org" target="_blank" rel="noopener">appliedsportpsych.org</a> before making plans.</div>
+        </div>
+      </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Step-by-Step: How to Get CMPC Certified</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Meet the Requirements</h3>
+          <p>Confirm your degree, coursework, and eligibility against the AASP Candidate Handbook.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Complete Coursework</h3>
+          <p>Finish graduate coursework across the eight knowledge areas, usually within a master's program.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Gain Mentored Experience</h3>
+          <p>Complete 400 hours of supervised applied work with athletes or performers.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>Apply and Take the Exam</h3>
+          <p>Submit your application to AASP and sit for the certification exam.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <h3>Maintain Certification</h3>
+          <p>Renew every five years with continuing education and professional activity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Exam prep -->
+  <section class="section soft" id="exam-prep">
+    <div class="wrap">
+      <div class="prose" style="max-width: 820px; margin: 0 auto;">
+        <h2>Exam Preparation</h2>
+        <p>The CMPC exam tests applied knowledge across the eight knowledge areas, with an emphasis on how you would handle real consulting situations. Because AASP does not publish the exam's question count or passing score as study targets, the most reliable preparation is deep familiarity with the knowledge areas themselves.</p>
+        <h3>How to prepare</h3>
+        <ul>
+          <li><strong>Study the knowledge areas systematically.</strong> Work through each of the eight areas with graduate-level texts in sport psychology, ethics, research methods, and helping relationships.</li>
+          <li><strong>Learn through your mentored hours.</strong> The 400 hours of supervised experience are preparation in themselves. Discuss difficult cases with your mentor and connect them to the knowledge areas.</li>
+          <li><strong>Practice applied reasoning.</strong> The exam emphasizes practical judgment, so study with scenario-based questions: what would you do first with an athlete who freezes under pressure, and why?</li>
+          <li><strong>Review ethics carefully.</strong> Professional Ethics and Standards is its own knowledge area and appears throughout applied scenarios.</li>
+        </ul>
+        <h3 id="study-resources">Study resources</h3>
+        <ul>
+          <li>The official <a href="https://appliedsportpsych.org" target="_blank" rel="noopener">AASP Candidate Handbook</a>, the authoritative source for requirements and exam content outlines.</li>
+          <li>Graduate-level sport psychology textbooks covering imagery, self-talk, goal setting, arousal regulation, and team dynamics.</li>
+          <li>Peer-reviewed journals such as the Journal of Applied Sport Psychology for current research.</li>
+          <li>Study groups with fellow candidates, which help with scenario-based reasoning.</li>
+        </ul>
+        <p>For context on the education paths that lead to certification, see our <a href="/degrees/">sports psychology degree guides</a>, and for the career it unlocks, our <a href="/careers/">careers guide</a>.</p>
+
+        <h2>Is CMPC Certification Worth It?</h2>
+        <p>For most practitioners who want to work directly with athletes and teams, the answer is yes. The CMPC is the credential employers recognize first: collegiate athletic departments, professional organizations, and academies routinely list it as preferred or required in job postings for mental performance roles. It signals that you have not only studied the field but practiced it under supervision.</p>
+        <p>That said, certification is an investment of time and money. The 400 mentored hours require planning, and the application fee and exam preparation add cost. If your career plans lean toward research or university teaching, a doctoral degree may matter more than the CMPC. If you plan to work in a clinical capacity, state licensure is the non-negotiable credential, and the CMPC complements rather than replaces it.</p>
+        <p>A practical way to decide: look at job postings for the roles you want five years from now and note which credentials they request. Then talk to two or three working consultants about how certification affected their careers. For most applied practitioners, the CMPC pays for itself in credibility and employability.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <div class="faq-answer"><p>{f.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related articles -->
+  <section class="section soft" id="related">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Related Articles</h2>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <img src="/images/athlete-preparation-track.webp" alt="Athlete warming up on a track at sunrise" width="1408" height="704" loading="lazy" />
+          <div class="card-body">
+            <h3>Sports Psychology Degrees</h3>
+            <p>The education paths that lead to certification: bachelor's, master's, and PhD.</p>
+            <a class="card-link" href="/degrees/">Read Guide <Fragment set:html={arrow} /></a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="/images/team-communication-soccer.webp" alt="Soccer team talking together on the field" width="1408" height="704" loading="lazy" />
+          <div class="card-body">
+            <h3>Careers in Sports Psychology</h3>
+            <p>Where CMPC holders work: roles, employers, salaries, and outlook.</p>
+            <a class="card-link" href="/careers/">Read Guide <Fragment set:html={arrow} /></a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="/images/athlete-mental-preparation.webp" alt="Athlete in focused mental preparation" width="1408" height="704" loading="lazy" />
+          <div class="card-body">
+            <h3>Mental Skills Training</h3>
+            <p>The core techniques CMPC consultants teach athletes every day.</p>
+            <a class="card-link" href="/mental-skills/">Read Guide <Fragment set:html={arrow} /></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+</BaseLayout>
