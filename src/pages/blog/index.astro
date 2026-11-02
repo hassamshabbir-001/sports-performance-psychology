@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+const articles = [
+  {
+    href: '/degrees/',
+    img: '/images/training-plan-equipment.webp',
+    alt: 'Training plan and coaching equipment',
+    title: 'Sports Psychology Degree',
+    excerpt: 'A complete guide to sports psychology degrees, including what you will study, program options, and how to choose the right path.',
+  },
+  {
+    href: '/careers/',
+    img: '/images/athlete-mental-preparation.webp',
+    alt: 'Athlete focusing in the gym',
+    title: 'Sports Psychology Salary',
+    excerpt: 'Learn how much sports psychologists earn, what affects salary, and how pay can vary by setting, education, and experience.',
+  },
+  {
+    href: '/careers/',
+    img: '/images/team-communication-soccer.webp',
+    alt: 'Soccer team in discussion on the field',
+    title: 'Sports Psychology Jobs',
+    excerpt: 'Explore the most common sports psychology jobs, from working with athletes to roles in coaching, performance, and academic settings.',
+  },
+  {
+    href: '/mental-skills/',
+    img: '/images/basketball-focus-routine.webp',
+    alt: 'Basketball player in a pre-shot routine',
+    title: 'Visualization in Sports Psychology',
+    excerpt: 'Learn how visualization works, why it is effective, and how athletes use it to build confidence, improve focus, and perform under pressure.',
+  },
+];
+---
+<BaseLayout
+  title="Blog: Sports Psychology Articles and Guides"
+  description="In-depth articles and guides on sports psychology: mental skills, degrees, careers, salary, and performance techniques for athletes."
+  ogImage="/images/athlete-preparation-track.webp"
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="breadcrumbs"><a href="/">Home</a> / Blog</p>
+      <h1>Sports Psychology Articles</h1>
+      <p>In-depth guides to the most common sports psychology topics, from mental skills techniques to degrees and careers.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="card-grid four">
+        {articles.map((a) => (
+          <article class="card">
+            <img src={a.img} alt={a.alt} width="1408" height="704" loading="lazy" />
+            <div class="card-body">
+              <h3>{a.title}</h3>
+              <p>{a.excerpt}</p>
+              <a class="card-link" href={a.href}>Read More <Fragment set:html={arrow} /></a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

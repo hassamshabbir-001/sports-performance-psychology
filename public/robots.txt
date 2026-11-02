@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sportsperformancepsychology.com/sitemap-index.xml
