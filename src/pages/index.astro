@@ -1,7 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { articles } from '../data/articles';
 
 const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+// Newest articles first; the homepage updates automatically when articles.ts grows.
+const popularArticles = [...articles].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 4);
 ---
 <BaseLayout
   title="Sports Performance Psychology: Mental Skills, Degrees and Careers"
@@ -123,38 +127,16 @@ const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke
         <p>Start with these in-depth guides to the most common sports psychology topics.</p>
       </div>
       <div class="card-grid four">
-        <article class="card">
-          <img src="/images/sports-psychology-degree-guide.webp" alt="Student studying sports psychology beside a graduation cap, books, and a brain model" width="1672" height="941" loading="lazy" />
-          <div class="card-body">
-            <h3>Sports Psychology Degree</h3>
-            <p>A complete guide to sports psychology degrees, including what you will study, program options, and how to choose the right path.</p>
-            <a class="card-link" href="/degrees/">Read More <Fragment set:html={arrow} /></a>
-          </div>
-        </article>
-        <article class="card">
-          <img src="/images/sports-psychology-career-consulting.webp" alt="Sports psychology consultant talking with an athlete on the running track" width="1672" height="941" loading="lazy" />
-          <div class="card-body">
-            <h3>Sports Psychology Salary</h3>
-            <p>Learn how much sports psychologists earn, what affects salary, and how pay can vary by setting, education, and experience.</p>
-            <a class="card-link" href="/careers/">Read More <Fragment set:html={arrow} /></a>
-          </div>
-        </article>
-        <article class="card">
-          <img src="/images/sports-psychology-career-consulting.webp" alt="Sports psychology consultant talking with an athlete on the running track" width="1672" height="941" loading="lazy" />
-          <div class="card-body">
-            <h3>Sports Psychology Jobs</h3>
-            <p>Explore the most common sports psychology jobs, from working with athletes to roles in coaching, performance, and academic settings.</p>
-            <a class="card-link" href="/careers/">Read More <Fragment set:html={arrow} /></a>
-          </div>
-        </article>
-        <article class="card">
-          <img src="/images/mental-skills-training-athlete.webp" alt="Focused athlete sitting on the running track before training" width="1672" height="941" loading="lazy" />
-          <div class="card-body">
-            <h3>Visualization in Sports Psychology</h3>
-            <p>Learn how visualization works, why it is effective, and how athletes use it to build confidence, improve focus, and perform under pressure.</p>
-            <a class="card-link" href="/mental-skills/">Read More <Fragment set:html={arrow} /></a>
-          </div>
-        </article>
+        {popularArticles.map((a) => (
+          <article class="card">
+            <img src={a.image} alt={a.alt} width={a.width ?? 1200} height={a.height ?? 675} loading="lazy" />
+            <div class="card-body">
+              <h3>{a.title}</h3>
+              <p>{a.excerpt}</p>
+              <a class="card-link" href={a.href}>Read More <Fragment set:html={arrow} /></a>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>

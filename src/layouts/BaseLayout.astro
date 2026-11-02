@@ -11,9 +11,38 @@ const ogAbsolute = new URL(ogImage, site).href;
 const nav = [
   { label: 'Home', href: '/' },
   { label: 'What Is Sports Psychology?', href: '/what-is-sports-psychology/' },
-  { label: 'Degrees', href: '/degrees/', chevron: true },
-  { label: 'Careers', href: '/careers/', chevron: true },
-  { label: 'Mental Skills', href: '/mental-skills/', chevron: true },
+  {
+    label: 'Degrees', href: '/degrees/',
+    children: [
+      { label: 'Overview', href: '/degrees/' },
+      { label: "Bachelor's", href: '/degrees/#bachelors' },
+      { label: "Master's", href: '/degrees/#masters' },
+      { label: 'Doctoral (PhD)', href: '/degrees/#doctoral' },
+      { label: 'Online Programs', href: '/degrees/#online' },
+      { label: 'Certification', href: '/degrees/certification/' },
+    ],
+  },
+  {
+    label: 'Careers', href: '/careers/',
+    children: [
+      { label: 'Overview', href: '/careers/' },
+      { label: 'Career Paths', href: '/careers/#career-paths' },
+      { label: 'Salary Guide', href: '/careers/#salary' },
+      { label: 'Job Outlook', href: '/careers/#outlook' },
+      { label: 'Employers', href: '/careers/#employers' },
+    ],
+  },
+  {
+    label: 'Mental Skills', href: '/mental-skills/',
+    children: [
+      { label: 'Overview', href: '/mental-skills/' },
+      { label: 'Visualization', href: '/mental-skills/#visualization' },
+      { label: 'Routines', href: '/mental-skills/#routines' },
+      { label: 'Confidence', href: '/mental-skills/#confidence' },
+      { label: 'Focus', href: '/mental-skills/#focus' },
+      { label: 'Self-Talk', href: '/mental-skills/#self-talk' },
+    ],
+  },
   { label: 'Blog', href: '/blog/' },
   { label: 'About', href: '/about/' },
 ];
@@ -92,6 +121,23 @@ const current = Astro.url.pathname;
     .main-nav a:hover { color: var(--red); }
     .main-nav a.active { color: var(--ink); border-bottom-color: var(--red); }
     .main-nav svg { width: 12px; height: 12px; }
+    .main-nav li.has-dropdown { position: relative; }
+    .main-nav .dropdown {
+      display: none;
+      position: absolute; top: 100%; left: -8px;
+      background: #fff; border: 1px solid var(--line); border-radius: 12px;
+      box-shadow: 0 16px 30px rgba(20,33,61,0.12);
+      min-width: 230px; padding: 8px; z-index: 60;
+      list-style: none; margin: 6px 0 0;
+    }
+    .main-nav li.has-dropdown:hover > .dropdown,
+    .main-nav li.has-dropdown:focus-within > .dropdown { display: block; }
+    .main-nav .dropdown li { display: block; }
+    .main-nav .dropdown a {
+      display: block; padding: 10px 14px; border-bottom: none;
+      font-size: 14px; font-weight: 600; border-radius: 8px;
+    }
+    .main-nav .dropdown a:hover { background: #F6F7FB; color: var(--red); }
     .header-actions { display: flex; align-items: center; gap: 14px; }
     .search-icon { color: var(--ink); display: inline-flex; cursor: pointer; }
     .search-icon svg { width: 20px; height: 20px; }
@@ -443,6 +489,12 @@ const current = Astro.url.pathname;
       .main-nav ul { flex-direction: column; align-items: stretch; gap: 0; padding: 8px 24px 18px; }
       .main-nav a { padding: 12px 0; border-bottom: 1px solid var(--line); }
       .main-nav a.active { border-bottom: 1px solid var(--line); border-left: 3px solid var(--red); padding-left: 10px; }
+      .main-nav .dropdown {
+        display: block; position: static;
+        box-shadow: none; border: none; border-radius: 0;
+        min-width: 0; padding: 0 0 0 18px; margin: 0;
+      }
+      .main-nav .dropdown a { padding: 10px 0; font-size: 14px; }
       .hero-grid { padding: 52px 0 0; }
       .hero h1 { font-size: 38px; }
       .hero-copy { max-width: none; }
@@ -491,13 +543,20 @@ const current = Astro.url.pathname;
       <nav class="main-nav" aria-label="Main navigation">
         <ul>
           {nav.map((item) => (
-            <li>
+            <li class={item.children ? 'has-dropdown' : ''}>
               <a href={item.href} class={current === item.href || (item.href !== '/' && current.startsWith(item.href)) ? 'active' : ''}>
                 {item.label}
-                {item.chevron && (
+                {item.children && (
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
                 )}
               </a>
+              {item.children && (
+                <ul class="dropdown" aria-label={item.label + ' submenu'}>
+                  {item.children.map((child) => (
+                    <li><a href={child.href}>{child.label}</a></li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))}
         </ul>
@@ -531,6 +590,8 @@ const current = Astro.url.pathname;
             <li><a href="/what-is-sports-psychology/">What Is Sports Psychology?</a></li>
             <li><a href="/blog/">Blog</a></li>
             <li><a href="/about/">About</a></li>
+            <li><a href="/author/hassam-shabbir/">About the Author</a></li>
+            <li><a href="/editorial-standards/">Editorial Standards</a></li>
           </ul>
         </div>
         <div>
@@ -552,6 +613,8 @@ const current = Astro.url.pathname;
         <div class="footer-legal">
           <a href="/privacy-policy/">Privacy Policy</a><span>|</span>
           <a href="/terms/">Terms of Use</a><span>|</span>
+          <a href="/cookies/">Cookies</a><span>|</span>
+          <a href="/disclaimer/">Disclaimer</a><span>|</span>
           <a href="/contact/">Contact</a>
         </div>
       </div>

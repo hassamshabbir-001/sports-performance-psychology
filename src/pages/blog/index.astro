@@ -1,65 +1,81 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { articles } from '../../data/articles';
 
 const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
-const articles = [
-  {
-    href: '/degrees/',
-    img: '/images/training-plan-equipment.webp',
-    alt: 'Training plan and coaching equipment',
-    title: 'Sports Psychology Degree',
-    excerpt: 'A complete guide to sports psychology degrees, including what you will study, program options, and how to choose the right path.',
-  },
-  {
-    href: '/careers/',
-    img: '/images/athlete-mental-preparation.webp',
-    alt: 'Athlete focusing in the gym',
-    title: 'Sports Psychology Salary',
-    excerpt: 'Learn how much sports psychologists earn, what affects salary, and how pay can vary by setting, education, and experience.',
-  },
-  {
-    href: '/careers/',
-    img: '/images/team-communication-soccer.webp',
-    alt: 'Soccer team in discussion on the field',
-    title: 'Sports Psychology Jobs',
-    excerpt: 'Explore the most common sports psychology jobs, from working with athletes to roles in coaching, performance, and academic settings.',
-  },
-  {
-    href: '/mental-skills/',
-    img: '/images/basketball-focus-routine.webp',
-    alt: 'Basketball player in a pre-shot routine',
-    title: 'Visualization in Sports Psychology',
-    excerpt: 'Learn how visualization works, why it is effective, and how athletes use it to build confidence, improve focus, and perform under pressure.',
-  },
-];
+// Newest articles first; this page updates automatically when articles.ts grows.
+const sorted = [...articles].sort((a, b) => b.date.localeCompare(a.date));
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://sportsperformancepsychology.com/blog/#webpage",
+      "url": "https://sportsperformancepsychology.com/blog/",
+      "name": "Blog: Sports Psychology Articles and Guides",
+      "description": "In-depth articles and guides on sports psychology: mental skills, degrees, careers, salary, and performance techniques for athletes.",
+      "isPartOf": { "@id": "https://sportsperformancepsychology.com/#website" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sportsperformancepsychology.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://sportsperformancepsychology.com/blog/" }
+      ]
+    }
+  ]
+};
 ---
 <BaseLayout
   title="Blog: Sports Psychology Articles and Guides"
   description="In-depth articles and guides on sports psychology: mental skills, degrees, careers, salary, and performance techniques for athletes."
   ogImage="/images/athlete-preparation-track.webp"
 >
-  <section class="page-hero">
-    <div class="wrap">
-      <p class="breadcrumbs"><a href="/">Home</a> / Blog</p>
-      <h1>Sports Psychology Articles</h1>
-      <p>In-depth guides to the most common sports psychology topics, from mental skills techniques to degrees and careers.</p>
-    </div>
-  </section>
-  <section class="section">
-    <div class="wrap">
-      <div class="card-grid four">
-        {articles.map((a) => (
-          <article class="card">
-            <img src={a.img} alt={a.alt} width="1408" height="704" loading="lazy" />
-            <div class="card-body">
-              <h3>{a.title}</h3>
-              <p>{a.excerpt}</p>
-              <a class="card-link" href={a.href}>Read More <Fragment set:html={arrow} /></a>
-            </div>
-          </article>
-        ))}
+  <!-- Inner hero -->
+  <section class="inner-hero">
+    <div class="wrap inner-hero-grid">
+      <div class="inner-hero-copy">
+        <p class="crumbs"><a href="/">Home</a> &rsaquo; Blog</p>
+        <h1>Blog</h1>
+        <p class="lead">In-depth articles and practical guides on sports psychology: mental skills, degrees, careers, and performance techniques for athletes.</p>
       </div>
     </div>
   </section>
+
+  {sorted.length > 0 ? (
+    <section class="section">
+      <div class="wrap">
+        <div class="card-grid four">
+          {sorted.map((a) => (
+            <article class="card">
+              <img src={a.image} alt={a.alt} width={a.width ?? 1200} height={a.height ?? 675} loading="lazy" />
+              <div class="card-body">
+                <h3>{a.title}</h3>
+                <p>{a.excerpt}</p>
+                <a class="card-link" href={a.href}>Read More <Fragment set:html={arrow} /></a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  ) : (
+    <section class="section">
+      <div class="wrap">
+        <div class="prose" style="text-align: center;">
+          <h2>In-depth articles are on the way</h2>
+          <p>We are preparing practical, evidence-based articles on sports psychology. While you wait, explore our core guides:</p>
+          <div class="explore-links">
+            <a href="/degrees/">Sports Psychology Degrees <Fragment set:html={arrow} /></a>
+            <a href="/careers/">Careers in Sports Psychology <Fragment set:html={arrow} /></a>
+            <a href="/mental-skills/">Mental Skills Training <Fragment set:html={arrow} /></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
 </BaseLayout>
