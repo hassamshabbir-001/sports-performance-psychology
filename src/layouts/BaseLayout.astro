@@ -513,6 +513,8 @@ const current = Astro.url.pathname;
         min-width: 0; padding: 0 0 0 18px; margin: 0;
       }
       .main-nav .dropdown::before { display: none; }
+      .main-nav li.has-dropdown:hover > .dropdown,
+      .main-nav li.has-dropdown:focus-within > .dropdown { display: none; }
       .main-nav li.has-dropdown.sub-open > .dropdown { display: block; }
       .main-nav .dropdown a { padding: 10px 0; font-size: 14px; }
       .hero-grid { padding-block: 52px 0; }
