@@ -9,6 +9,7 @@ export interface Article {
   alt: string;
   href: string;
   date: string; // ISO date string, e.g. "2026-11-10"
+  category: string; // topic label shown on cards, e.g. "Mental skills"
   width?: number; // true image width in px (defaults below if omitted)
   height?: number; // true image height in px (defaults below if omitted)
 }
@@ -21,6 +22,7 @@ export const articles: Article[] = [
     alt: "Athlete sitting on the track with eyes closed, practicing visualization at sunset",
     href: "/blog/visualization-for-athletes/",
     date: "2026-11-02",
+    category: "Mental skills",
     width: 1448,
     height: 1086,
   },
@@ -31,6 +33,7 @@ export const articles: Article[] = [
     alt: "Sports psychology consultant discussing plans with an athlete",
     href: "/blog/sports-psychology-salary/",
     date: "2026-11-01",
+    category: "Careers and salary",
     width: 1448,
     height: 1086,
   },
@@ -41,6 +44,7 @@ export const articles: Article[] = [
     alt: "Student attending an online sports psychology lecture with headphones",
     href: "/blog/online-sports-psychology-degree/",
     date: "2026-10-31",
+    category: "Degrees and education",
     width: 1448,
     height: 1086,
   },
@@ -51,6 +55,7 @@ export const articles: Article[] = [
     alt: "Graduate student studying sports psychology with a graduation cap on the desk",
     href: "/blog/sports-psychology-masters-programs/",
     date: "2026-10-30",
+    category: "Degrees and education",
     width: 1448,
     height: 1086,
   },

@@ -2,10 +2,14 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { articles } from '../../data/articles';
 
-const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
-
 // Newest articles first; this page updates automatically when articles.ts grows.
 const sorted = [...articles].sort((a, b) => b.date.localeCompare(a.date));
+
+function prettyDate(iso: string) {
+  return new Date(iso + 'T00:00:00').toLocaleDateString('en-US', {
+    year: 'numeric', month: 'long', day: 'numeric',
+  });
+}
 
 const schema = {
   "@context": "https://schema.org",
@@ -33,50 +37,100 @@ const schema = {
   description="In-depth articles and guides on sports psychology: mental skills, degrees, careers, salary, and performance techniques for athletes."
   ogImage="/images/athlete-preparation-track.webp"
 >
+  <style>
+    .blog-kicker {
+      text-transform: uppercase; letter-spacing: .08em;
+      font-size: 13px; font-weight: 700; color: var(--red);
+      margin: 0 0 10px;
+    }
+    .blog-archive-heading { margin: 0 0 8px; }
+    .blog-archive-heading h2 { margin: 0; }
+    .blog-archive-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 28px; margin-top: 32px;
+    }
+    @media (max-width: 1100px) {
+      .blog-archive-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 760px) {
+      .blog-archive-grid { grid-template-columns: 1fr; }
+    }
+    .blog-card {
+      background: #fff; border: 1px solid var(--line);
+      border-radius: 16px; overflow: hidden;
+      transition: transform .2s ease, box-shadow .2s ease;
+      display: flex; flex-direction: column;
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 36px rgba(20,33,61,.12);
+    }
+    .blog-card > a { text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%; }
+    .blog-card-image { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #EDEFF5; }
+    .blog-card-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .blog-card-num {
+      position: absolute; left: 14px; bottom: 14px;
+      background: rgba(20,33,61,.85); color: #fff;
+      font-size: 13px; font-weight: 700; letter-spacing: .05em;
+      padding: 6px 12px; border-radius: 999px;
+    }
+    .blog-card-copy { padding: 22px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+    .blog-article-meta {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      font-size: 13px; color: var(--muted);
+    }
+    .blog-article-meta .cat {
+      color: var(--red); font-weight: 700; font-size: 12px;
+      text-transform: uppercase; letter-spacing: .05em;
+    }
+    .blog-card-copy h3 { font-size: 20px; line-height: 1.3; margin: 10px 0 8px; color: var(--ink); }
+    .blog-card-copy p { color: var(--muted); font-size: 15px; line-height: 1.6; margin: 0 0 4px; flex: 1; }
+    .blog-author { display: block; margin-top: 14px; font-size: 13.5px; font-weight: 600; color: var(--ink); }
+    .blog-read-link { display: inline-block; margin-top: 6px; color: var(--red); font-weight: 700; font-size: 15px; }
+    .blog-card:hover .blog-read-link { text-decoration: underline; }
+  </style>
   <article>
   <!-- Inner hero -->
   <section class="inner-hero">
     <div class="wrap inner-hero-grid">
       <div class="inner-hero-copy">
         <p class="crumbs"><a href="/">Home</a> &rsaquo; Blog</p>
-        <h1>Blog</h1>
-        <p class="lead">In-depth articles and practical guides on sports psychology: mental skills, degrees, careers, and performance techniques for athletes.</p>
+        <h1>Sports Psychology Blog: Evidence-Based Guides</h1>
+        <p class="lead">Practical, evidence-based guides on the mental side of sport. Every article starts with the reader's real question and builds toward clear, sourced answers.</p>
       </div>
     </div>
   </section>
 
-  {sorted.length > 0 ? (
-    <section class="section">
-      <div class="wrap">
-        <div class="card-grid four">
-          {sorted.map((a) => (
-            <article class="card">
-              <img src={a.image} alt={a.alt} width={a.width ?? 1200} height={a.height ?? 675} loading="lazy" />
-              <div class="card-body">
-                <h2>{a.title}</h2>
-                <p>{a.excerpt}</p>
-                <a class="card-link" href={a.href}>Read More <Fragment set:html={arrow} /></a>
+  <section class="section">
+    <div class="wrap">
+      <header class="blog-archive-heading">
+        <p class="blog-kicker">Newest to oldest</p>
+        <h2>Latest sports psychology articles</h2>
+      </header>
+      <div class="blog-archive-grid">
+        {sorted.map((a, i) => (
+          <article class="blog-card">
+            <a href={a.href}>
+              <div class="blog-card-image">
+                <img src={a.image} alt={a.alt} width={a.width ?? 1200} height={a.height ?? 675} loading="lazy" decoding="async" />
+                <span class="blog-card-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
               </div>
-            </article>
-          ))}
-        </div>
+              <div class="blog-card-copy">
+                <div class="blog-article-meta">
+                  <span class="cat">{a.category}</span>
+                  <time datetime={a.date}>{prettyDate(a.date)}</time>
+                </div>
+                <h3>{a.title}</h3>
+                <p>{a.excerpt}</p>
+                <span class="blog-author">By Hassam Shabbir</span>
+                <span class="blog-read-link">Read article &rarr;</span>
+              </div>
+            </a>
+          </article>
+        ))}
       </div>
-    </section>
-  ) : (
-    <section class="section">
-      <div class="wrap">
-        <div class="prose" style="text-align: center;">
-          <h2>In-depth articles are on the way</h2>
-          <p>We are preparing practical, evidence-based articles on sports psychology. While you wait, explore our core guides:</p>
-          <div class="explore-links">
-            <a href="/degrees/">Sports Psychology Degrees <Fragment set:html={arrow} /></a>
-            <a href="/careers/">Careers in Sports Psychology <Fragment set:html={arrow} /></a>
-            <a href="/mental-skills/">Mental Skills Training <Fragment set:html={arrow} /></a>
-          </div>
-        </div>
-      </div>
-    </section>
-  )}
+    </div>
+  </section>
 
   <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
   </article>
