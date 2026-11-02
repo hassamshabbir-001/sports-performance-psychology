@@ -23,10 +23,15 @@ const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke
       </div>
     </div>
     <div class="hero-media" aria-hidden="true">
-      <svg class="swoosh" viewBox="0 0 120 600" preserveAspectRatio="none">
-        <path d="M104 0 C 34 160, 34 440, 104 600 L 120 600 L 120 0 Z" fill="#D62828"/>
+      <svg class="hero-art" viewBox="0 0 500 600" preserveAspectRatio="none">
+        <defs>
+          <clipPath id="heroPhotoClip">
+            <path d="M112,0 C54,150 54,450 112,600 L500,600 L500,0 Z"/>
+          </clipPath>
+        </defs>
+        <image href="/images/athlete-mental-preparation.webp" x="0" y="0" width="500" height="600" preserveAspectRatio="xMidYMid slice" clip-path="url(#heroPhotoClip)"/>
+        <path d="M112,0 C54,150 54,450 112,600" fill="none" stroke="#D62828" stroke-width="9"/>
       </svg>
-      <img class="photo" src="/images/athlete-mental-preparation.webp" alt="" width="1408" height="704" fetchpriority="high" />
     </div>
   </section>
 

@@ -123,13 +123,7 @@ const current = Astro.url.pathname;
       position: absolute; top: 0; right: 0; bottom: 0;
       width: 48%; z-index: 1; pointer-events: none;
     }
-    .hero-media .swoosh {
-      position: absolute; top: 0; left: -58px;
-      width: 120px; height: 100%;
-    }
-    .hero-media img.photo {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-    }
+    .hero-media .hero-art { width: 100%; height: 100%; display: block; }
     .eyebrow {
       text-transform: uppercase; letter-spacing: 2.5px;
       font-size: 12px; font-weight: 700; color: var(--muted);
@@ -310,9 +304,8 @@ const current = Astro.url.pathname;
       .hero-grid { padding: 52px 0 0; }
       .hero h1 { font-size: 38px; }
       .hero-copy { max-width: none; }
-      .hero-media { position: relative; width: 100%; margin-top: 36px; }
-      .hero-media .swoosh { display: none; }
-      .hero-media img.photo { aspect-ratio: 16 / 10; height: auto; }
+      .hero-media { position: relative; width: 100%; margin-top: 36px; aspect-ratio: 16 / 10; }
+      .hero-media .hero-art { border-radius: 14px; }
       .pillar-grid, .subscribe-grid { grid-template-columns: 1fr; gap: 0; }
       .pillar-media img, .subscribe-media img { min-height: 220px; max-height: 300px; }
       .pillar-media::after, .subscribe-media::after { display: none; }
