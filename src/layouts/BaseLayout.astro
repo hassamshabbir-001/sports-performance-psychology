@@ -125,6 +125,12 @@ const current = Astro.url.pathname;
     .main-nav a.active { color: var(--ink); border-bottom-color: var(--red); }
     .main-nav svg { width: 12px; height: 12px; }
     .main-nav li.has-dropdown { position: relative; }
+    .sub-toggle {
+      display: none; background: none; border: none; cursor: pointer;
+      color: inherit; padding: 8px; line-height: 0; border-radius: 8px;
+    }
+    .sub-toggle svg { width: 14px; height: 14px; transition: transform .2s ease; }
+    .sub-toggle:hover { color: var(--red); }
     .main-nav .dropdown {
       display: none;
       position: absolute; top: 100%; left: -8px;
@@ -496,11 +502,18 @@ const current = Astro.url.pathname;
       .main-nav ul { flex-direction: column; align-items: stretch; gap: 0; padding: 8px 24px 18px; }
       .main-nav a { padding: 12px 0; border-bottom: 1px solid var(--line); }
       .main-nav a.active { border-bottom: 1px solid var(--line); border-left: 3px solid var(--red); padding-left: 10px; }
+      .main-nav li.has-dropdown { display: flex; flex-wrap: wrap; align-items: center; }
+      .main-nav li.has-dropdown > a { flex: 1 1 auto; }
+      .sub-toggle { display: inline-flex; align-items: center; margin-right: -8px; }
+      .main-nav li.has-dropdown.sub-open .sub-toggle svg { transform: rotate(180deg); }
+      .main-nav li.has-dropdown.sub-open .sub-toggle { color: var(--red); }
       .main-nav .dropdown {
-        display: block; position: static;
+        display: none; position: static; flex: 1 1 100%;
         box-shadow: none; border: none; border-radius: 0;
         min-width: 0; padding: 0 0 0 18px; margin: 0;
       }
+      .main-nav .dropdown::before { display: none; }
+      .main-nav li.has-dropdown.sub-open > .dropdown { display: block; }
       .main-nav .dropdown a { padding: 10px 0; font-size: 14px; }
       .hero-grid { padding: 52px 0 0; }
       .hero h1 { font-size: 38px; }
@@ -553,10 +566,12 @@ const current = Astro.url.pathname;
             <li class={item.children ? 'has-dropdown' : ''}>
               <a href={item.href} class={current === item.href || (item.href !== '/' && current.startsWith(item.href)) ? 'active' : ''}>
                 {item.label}
-                {item.children && (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-                )}
               </a>
+              {item.children && (
+                <button type="button" class="sub-toggle" aria-expanded="false" aria-label={item.label + ' submenu'}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+              )}
               {item.children && (
                 <ul class="dropdown" aria-label={item.label + ' submenu'}>
                   {item.children.map((child) => (
@@ -636,8 +651,24 @@ const current = Astro.url.pathname;
         toggle.addEventListener('click', function () {
           var open = header.classList.toggle('nav-open');
           toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+          if (!open) {
+            header.querySelectorAll('li.has-dropdown.sub-open').forEach(function (li) {
+              li.classList.remove('sub-open');
+              var btn = li.querySelector('.sub-toggle');
+              if (btn) btn.setAttribute('aria-expanded', 'false');
+            });
+          }
         });
       }
+      document.querySelectorAll('.sub-toggle').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          var li = btn.closest('li.has-dropdown');
+          if (!li) return;
+          var open = li.classList.toggle('sub-open');
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      });
       document.querySelectorAll('.subscribe-form').forEach(function (form) {
         form.addEventListener('submit', function (e) {
           e.preventDefault();
