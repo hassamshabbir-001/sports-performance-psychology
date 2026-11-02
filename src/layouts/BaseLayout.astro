@@ -176,7 +176,7 @@ const current = Astro.url.pathname;
 
     /* Hero: text left, full-bleed image panel right with red curve */
     .hero { position: relative; background: var(--bg-soft); overflow: hidden; }
-    .hero-grid { position: relative; z-index: 2; padding: 96px 0; }
+    .hero-grid { position: relative; z-index: 2; padding-block: 96px; }
     .hero-copy { max-width: 540px; }
     .hero-media {
       position: absolute; top: 0; right: 0; bottom: 0;
@@ -353,7 +353,7 @@ const current = Astro.url.pathname;
 
     /* Inner-page hero (breadcrumb + H1 + lead + CTAs, curved image panel right) */
     .inner-hero { position: relative; background: var(--bg-soft); overflow: hidden; }
-    .inner-hero-grid { position: relative; z-index: 2; padding: 56px 0 64px; }
+    .inner-hero-grid { position: relative; z-index: 2; padding-block: 56px 64px; }
     .inner-hero-copy { max-width: 560px; }
     .inner-hero .crumbs { font-size: 13.5px; color: var(--muted); margin: 0 0 14px; }
     .inner-hero .crumbs a { color: var(--muted); text-decoration: none; }
@@ -515,7 +515,7 @@ const current = Astro.url.pathname;
       .main-nav .dropdown::before { display: none; }
       .main-nav li.has-dropdown.sub-open > .dropdown { display: block; }
       .main-nav .dropdown a { padding: 10px 0; font-size: 14px; }
-      .hero-grid { padding: 52px 0 0; }
+      .hero-grid { padding-block: 52px 0; }
       .hero h1 { font-size: 38px; }
       .hero-copy { max-width: none; }
       .hero-media { position: relative; width: 100%; margin-top: 36px; aspect-ratio: 16 / 10; }
@@ -535,7 +535,7 @@ const current = Astro.url.pathname;
       .icon-disc svg { width: 23px; height: 23px; }
       .panel img { min-height: 0; aspect-ratio: 16 / 9; height: auto; }
       .degree-block { grid-template-columns: 1fr; gap: 20px; }
-      .inner-hero-grid { padding: 40px 0 0; }
+      .inner-hero-grid { padding-block: 40px 0; }
       .inner-hero h1 { font-size: 34px; }
       .inner-hero-copy { max-width: none; }
       .inner-hero .hero-media { width: 100%; margin-top: 28px; }
