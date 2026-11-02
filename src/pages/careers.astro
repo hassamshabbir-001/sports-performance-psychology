@@ -6,6 +6,7 @@ const briefIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-
 const chartIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M21 20H3"/></svg>';
 const trendIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>';
 const usersIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2c2.8.3 5.5 2.2 5.5 5.8"/></svg>';
+const bookIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-2v14c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2z"/><path d="M12 6v14"/></svg>';
 
 const faqs = [
   {
@@ -116,30 +117,24 @@ const schema = {
         <h2>Career Paths in Sports Psychology</h2>
         <p>Common job roles, what they do, and where they work.</p>
       </div>
-      <div class="card-grid">
-        <article class="card" id="sport-psychologist">
-          <img src="/images/team-communication-soccer.webp" alt="Practitioner talking with an athlete on the field" width="1408" height="704" loading="lazy" />
-          <div class="card-body">
-            <h3>Sport Psychologist</h3>
-            <p>Work directly with athletes to build mental skills and performance strategies, from youth competitors to professionals. Licensed sport psychologists can also address mental health concerns that affect performance.</p>
-            <p>Typical settings include collegiate athletic departments, professional teams, Olympic programs, and private practice. A doctoral degree plus state licensure is usually required to use the psychologist title.</p>
-          </div>
+      <div class="icon-card-grid">
+        <article class="icon-card" id="sport-psychologist">
+          <span class="icon-disc"><Fragment set:html={usersIcon} /></span>
+          <h3>Sport Psychologist</h3>
+          <p>Work directly with athletes to build mental skills and performance strategies, from youth competitors to professionals. Licensed sport psychologists can also address mental health concerns that affect performance.</p>
+          <p>Typical settings include collegiate athletic departments, professional teams, Olympic programs, and private practice. A doctoral degree plus state licensure is usually required to use the psychologist title.</p>
         </article>
-        <article class="card" id="performance-consultant">
-          <img src="/images/basketball-focus-routine.webp" alt="Athlete focused during a training routine" width="1408" height="704" loading="lazy" />
-          <div class="card-body">
-            <h3>Performance Consultant</h3>
-            <p>Help teams and individual athletes improve focus, confidence, and consistency through mental skills training. Consultants often work across multiple teams or sports on a contract basis.</p>
-            <p>This is the most common applied role for master's-level graduates. The CMPC credential is the recognized standard, and many consultants build a mix of team contracts, individual clients, and workshops.</p>
-          </div>
+        <article class="icon-card" id="performance-consultant">
+          <span class="icon-disc"><Fragment set:html={briefIcon} /></span>
+          <h3>Performance Consultant</h3>
+          <p>Help teams and individual athletes improve focus, confidence, and consistency through mental skills training. Consultants often work across multiple teams or sports on a contract basis.</p>
+          <p>This is the most common applied role for master's-level graduates. The CMPC credential is the recognized standard, and many consultants build a mix of team contracts, individual clients, and workshops.</p>
         </article>
-        <article class="card" id="research-academia">
-          <img src="/images/training-plan-equipment.webp" alt="Researcher reviewing training materials and equipment" width="1408" height="704" loading="lazy" />
-          <div class="card-body">
-            <h3>Research &amp; Academia</h3>
-            <p>Teach the next generation of practitioners and advance the science of performance through research. Academic roles combine teaching, publishing, and often applied consulting.</p>
-            <p>University faculty positions typically require a PhD. Researchers also work in sport institutes, governing bodies, and organizations studying human performance.</p>
-          </div>
+        <article class="icon-card" id="research-academia">
+          <span class="icon-disc"><Fragment set:html={bookIcon} /></span>
+          <h3>Research &amp; Academia</h3>
+          <p>Teach the next generation of practitioners and advance the science of performance through research. Academic roles combine teaching, publishing, and often applied consulting.</p>
+          <p>University faculty positions typically require a PhD. Researchers also work in sport institutes, governing bodies, and organizations studying human performance.</p>
         </article>
       </div>
     </div>
@@ -215,37 +210,14 @@ const schema = {
     </div>
   </section>
 
-  <!-- Related articles -->
+  <!-- Keep exploring -->
   <section class="section" id="related">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Related Articles</h2>
-      </div>
-      <div class="card-grid">
-        <article class="card">
-          <img src="/images/athlete-preparation-track.webp" alt="Athlete warming up on a track at sunrise" width="1408" height="704" loading="lazy" />
-          <div class="card-body">
-            <h3>Sports Psychology Degrees</h3>
-            <p>Bachelor's, master's, and PhD programs, online options, and admission requirements.</p>
-            <a class="card-link" href="/degrees/">Read Guide <Fragment set:html={arrow} /></a>
-          </div>
-        </article>
-        <article class="card">
-          <img src="/images/basketball-focus-routine.webp" alt="Basketball player focused before taking a shot" width="1408" height="704" loading="lazy" />
-          <div class="card-body">
-            <h3>CMPC Certification</h3>
-            <p>Eligibility, exam details, costs, and whether certification is worth it for your career.</p>
-            <a class="card-link" href="/degrees/certification/">Read Guide <Fragment set:html={arrow} /></a>
-          </div>
-        </article>
-        <article class="card">
-          <img src="/images/athlete-mental-preparation.webp" alt="Athlete in focused mental preparation" width="1408" height="704" loading="lazy" />
-          <div class="card-body">
-            <h3>Mental Skills Training</h3>
-            <p>The practical techniques at the heart of the profession: visualization, routines, and focus.</p>
-            <a class="card-link" href="/mental-skills/">Read Guide <Fragment set:html={arrow} /></a>
-          </div>
-        </article>
+    <div class="wrap explore-wrap">
+      <h2>Keep Exploring</h2>
+      <div class="explore-links">
+        <a href="/degrees/">Sports Psychology Degrees <Fragment set:html={arrow} /></a>
+        <a href="/degrees/certification/">CMPC Certification <Fragment set:html={arrow} /></a>
+        <a href="/mental-skills/">Mental Skills Training <Fragment set:html={arrow} /></a>
       </div>
     </div>
   </section>

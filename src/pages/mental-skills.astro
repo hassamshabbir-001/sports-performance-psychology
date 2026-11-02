@@ -12,8 +12,7 @@ const skills = [
   {
     id: "visualization",
     title: "Visualization",
-    img: "/images/athlete-preparation-track.webp",
-    alt: "Athlete visualizing performance on a track at sunrise",
+    icon: brainIcon,
     intro: "Use mental imagery to rehearse performance and build consistency.",
     body: [
       "Visualization, also called mental imagery, means creating a vivid multi-sensory rehearsal of a skill in your mind before you perform it. A sprinter might rehearse the sound of the starter pistol, the feel of the drive phase, and the sight of the finish line. Research in sport psychology has long treated imagery as one of the most practiced mental skills at every level of sport.",
@@ -24,8 +23,7 @@ const skills = [
   {
     id: "routines",
     title: "Routines",
-    img: "/images/basketball-focus-routine.webp",
-    alt: "Basketball player following a pre-shot routine",
+    icon: calIcon,
     body: [
       "Routines are fixed sequences of thoughts and actions performed before or during competition. A tennis player bounces the ball three times before each serve. A golfer follows the same steps behind every putt. The purpose is not superstition: a consistent routine narrows attention, blocks distractions, and gives the athlete a sense of control in high-pressure moments.",
       "Effective routines share three traits. They are consistent, performed the same way every time. They are controllable, focused on your own actions rather than outcomes. And they are brief enough to fit the rhythm of the sport. Build routines in three phases: a pre-performance routine (what you do before the event starts), an in-performance routine (what you do between plays or attempts), and a reset routine for mistakes.",
@@ -36,8 +34,7 @@ const skills = [
   {
     id: "confidence",
     title: "Confidence",
-    img: "/images/team-communication-soccer.webp",
-    alt: "Teammates encouraging each other on the field",
+    icon: medalIcon,
     body: [
       "Confidence in sport means trusting your preparation and your ability to execute under pressure. It is not arrogance and it is not fixed: confidence rises and falls with preparation, recent performances, feedback from coaches, and how you interpret setbacks. The good news is that it can be trained like any other skill.",
       "The most reliable confidence builders are evidence-based. Keep a performance log where you record specific things you executed well after each training session and competition. Reviewing real evidence beats positive thinking alone. Set process goals you control, such as footwork or shot selection, rather than outcome goals, so that progress is visible even when results vary.",
@@ -48,8 +45,7 @@ const skills = [
   {
     id: "focus",
     title: "Focus",
-    img: "/images/athlete-mental-preparation.webp",
-    alt: "Athlete in deep focus during mental preparation",
+    icon: targetIcon,
     body: [
       "Focus is the ability to direct attention to the right cue at the right time and to return it there after distractions. Different sports demand different attention styles: a golfer needs narrow focus on the ball, a point guard needs broad awareness of the court. Training focus means practicing the attention style your sport requires.",
       "Start by identifying your key performance cues, the one or two things that matter most in the moment, such as the target, your breathing, or your footwork. Then build a refocusing plan for the distractions you actually face: crowd noise, a bad call, or thoughts about the score. A common method is the 'cue word' technique, where a single word like 'smooth' or 'attack' snaps attention back to the present task.",
@@ -60,8 +56,7 @@ const skills = [
   {
     id: "self-talk",
     title: "Self-Talk",
-    img: "/images/runner-flexibility-warmup.webp",
-    alt: "Runner preparing calmly during warmup",
+    icon: chatIcon,
     body: [
       "Self-talk is the running commentary in your head during performance, and it directly shapes effort and emotion. Instructional self-talk gives technical cues ('elbow in, follow through'), while motivational self-talk regulates energy and persistence ('push through this rep'). Both have their place; the mistake is letting self-talk stay negative and unplanned.",
       "To improve it, first notice your current patterns. For one week, jot down what you say to yourself after mistakes and during hard efforts. Then rewrite the unhelpful lines into short, specific, present-tense alternatives. 'I always choke' becomes 'breathe, next play.' Keep phrases brief, because long sentences cannot survive high pressure.",
@@ -182,18 +177,19 @@ const schema = {
         <h2>Key Mental Skills for Performance</h2>
         <p>Learn and practice core techniques used by athletes at every level.</p>
       </div>
-      {skills.map((s) => (
-        <div class="degree-block" id={s.id}>
-          <div>
-            <img src={s.img} alt={s.alt} width="1408" height="704" loading="lazy" />
-          </div>
-          <div>
-            <h3>{s.title}</h3>
+      <div class="prose">
+        {skills.map((s, i) => (
+          <div class="icon-block" id={s.id}>
+            <div class="icon-block-top">
+              <span class="block-num">{String(i + 1).padStart(2, "0")}</span>
+              <span class="icon-disc"><Fragment set:html={s.icon} /></span>
+              <h3>{s.title}</h3>
+            </div>
             <p><strong>{s.intro}</strong></p>
             {s.body.map((p) => (<p>{p}</p>))}
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </section>
 
@@ -214,37 +210,14 @@ const schema = {
     </div>
   </section>
 
-  <!-- Related articles -->
+  <!-- Keep exploring -->
   <section class="section soft" id="related">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Related Articles</h2>
-      </div>
-      <div class="card-grid">
-        <article class="card">
-          <img src="/images/athlete-mental-preparation.webp" alt="Athlete in focused mental preparation" width="1408" height="704" loading="lazy" />
-          <div class="card-body">
-            <h3>What Is Sports Psychology?</h3>
-            <p>The foundations: definitions, history, and how the field helps athletes perform.</p>
-            <a class="card-link" href="/what-is-sports-psychology/">Read Guide <Fragment set:html={arrow} /></a>
-          </div>
-        </article>
-        <article class="card">
-          <img src="/images/team-communication-soccer.webp" alt="Soccer team talking together on the field" width="1408" height="704" loading="lazy" />
-          <div class="card-body">
-            <h3>Careers in Sports Psychology</h3>
-            <p>Turn mental skills expertise into a profession: roles, salaries, and outlook.</p>
-            <a class="card-link" href="/careers/">Read Guide <Fragment set:html={arrow} /></a>
-          </div>
-        </article>
-        <article class="card">
-          <img src="/images/training-plan-equipment.webp" alt="Coach reviewing a training plan" width="1408" height="704" loading="lazy" />
-          <div class="card-body">
-            <h3>Sports Psychology Degrees</h3>
-            <p>Study the science behind these techniques with a degree in sports psychology.</p>
-            <a class="card-link" href="/degrees/">Read Guide <Fragment set:html={arrow} /></a>
-          </div>
-        </article>
+    <div class="wrap explore-wrap">
+      <h2>Keep Exploring</h2>
+      <div class="explore-links">
+        <a href="/what-is-sports-psychology/">What Is Sports Psychology? <Fragment set:html={arrow} /></a>
+        <a href="/careers/">Careers in Sports Psychology <Fragment set:html={arrow} /></a>
+        <a href="/degrees/">Sports Psychology Degrees <Fragment set:html={arrow} /></a>
       </div>
     </div>
   </section>

@@ -394,6 +394,33 @@ const current = Astro.url.pathname;
     .degree-block ul { margin: 0 0 12px; padding-left: 20px; font-size: 15.5px; color: var(--ink); }
     .degree-block li { margin-bottom: 6px; }
 
+    /* Icon-headed page sections (pages use icons/vectors, no photos below hero) */
+    .icon-block { margin-bottom: 52px; }
+    .icon-block:last-child { margin-bottom: 0; }
+    .icon-block-top { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+    .icon-disc { width: 54px; height: 54px; border-radius: 50%; background: #FDECEC; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+    .icon-disc svg { width: 27px; height: 27px; }
+    .icon-block-top h3 { margin: 0; font-size: 24px; color: var(--navy); font-weight: 800; }
+    .icon-block p { font-size: 15.5px; line-height: 1.75; color: var(--ink); margin: 0 0 12px; }
+    .icon-block ul { margin: 0 0 12px; padding-left: 20px; font-size: 15.5px; line-height: 1.75; color: var(--ink); }
+    .icon-block li { margin-bottom: 6px; }
+    .block-num { font-size: 40px; font-weight: 800; color: var(--red); line-height: 1; letter-spacing: -1px; flex: none; }
+
+    /* Icon cards (photo-free) */
+    .icon-card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .icon-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 28px; }
+    .icon-card .icon-disc { margin-bottom: 18px; }
+    .icon-card h3 { margin: 0 0 10px; font-size: 20px; color: var(--navy); font-weight: 800; }
+    .icon-card p { margin: 0 0 12px; font-size: 15px; line-height: 1.7; color: var(--ink); }
+    .icon-card p:last-child { margin-bottom: 0; }
+
+    /* Keep exploring band (slim text links, no thumbnails) */
+    .explore-wrap { text-align: center; }
+    .explore-links { display: flex; justify-content: center; align-items: center; gap: 16px 48px; flex-wrap: wrap; margin-top: 24px; }
+    .explore-links a { display: inline-flex; align-items: center; gap: 10px; font-size: 17.5px; font-weight: 700; color: var(--navy); text-decoration: none; }
+    .explore-links a svg { width: 18px; height: 18px; color: var(--red); flex: none; }
+    .explore-links a:hover { color: var(--red); }
+
     /* Responsive */
     @media (max-width: 1020px) {
       .card-grid.four, .tile-grid { grid-template-columns: repeat(2, 1fr); }
@@ -428,8 +455,12 @@ const current = Astro.url.pathname;
       .pillar-media img, .subscribe-media img { min-height: 220px; max-height: 300px; }
       .pillar-media::after, .subscribe-media::after { display: none; }
       .pillar-copy, .subscribe-copy { padding: 40px 24px; }
-      .card-grid, .panel-grid { grid-template-columns: 1fr; }
+      .card-grid, .panel-grid, .icon-card-grid { grid-template-columns: 1fr; }
       .panel { grid-template-columns: 1fr; }
+      .explore-links { flex-direction: column; gap: 16px; align-items: center; }
+      .block-num { font-size: 32px; }
+      .icon-disc { width: 46px; height: 46px; }
+      .icon-disc svg { width: 23px; height: 23px; }
       .panel img { min-height: 0; aspect-ratio: 16 / 9; height: auto; }
       .degree-block { grid-template-columns: 1fr; gap: 20px; }
       .inner-hero-grid { padding: 40px 0 0; }
