@@ -7,8 +7,19 @@ const calIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-wi
 const medalIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.5L7 21l5-2.5L17 21l-1.5-7.5"/></svg>';
 const targetIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="#D62828"/></svg>';
 const chatIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H4l2-3a8 8 0 1 1 15-5z"/></svg>';
+const goalIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/><path d="M12 3V5M12 19v2M3 12h2M19 12h2"/></svg>';
 
 const skills = [
+  {
+    id: "goal-setting",
+    title: "Goal Setting",
+    icon: goalIcon,
+    intro: "Turn vague ambitions into targets you can act on this week.",
+    body: [
+      "Goal setting turns a vague wish into a target you can act on. Sport psychology distinguishes three layers: outcome goals (win the match), performance goals (hold a personal standard, like 80 percent first serves), and process goals (toss the ball the same height every time). Athletes who live in outcome goals ride an emotional roller coaster they cannot control. Athletes who live in process goals see progress in every practice, and that visible progress is what keeps motivation alive across a long season.",
+      "The SMART checklist keeps goals honest: Specific, Measurable, Achievable, Relevant, Time-bound. The acronym was first described by George T. Doran in a 1981 management paper and has been adopted across sport psychology ever since. 'Improve my free throws' is a wish; 'make 80 of 100 free throws in practice, three times a week, for a month' is a goal. Short-term process goals feed long-term outcome goals, and a weekly review turns the plan into a habit."
+    ]
+  },
   {
     id: "visualization",
     title: "Visualization",
@@ -166,7 +177,7 @@ const schema = {
         <div class="disclaimer-box">This article is for educational purposes only and is not medical or psychological advice. If you are dealing with anxiety, depression, or an eating disorder, please work with a licensed mental health professional.</div>
         <h2>What Are Mental Skills?</h2>
         <p>Physical talent sets the ceiling, but mental skills decide how often an athlete reaches it. Two athletes with equal ability perform differently under pressure because of trainable psychological skills: how they focus, what they tell themselves, how they prepare, and how they respond to mistakes.</p>
-        <p>Sports psychology techniques are practical tools, not motivational slogans. Each skill below comes with concrete steps you can practice in training this week. They work best as a system: routines create the structure, self-talk and imagery fill it with the right content, and focus and confidence are the results. For background on the field itself, see <a href="/what-is-sports-psychology/">what sports psychology is</a>.</p>
+        <p>Sports psychology techniques are practical tools, built for the training ground. Each skill below comes with concrete steps you can practice in training this week. They work best as a system: goal setting defines the target, routines create the structure, self-talk and imagery fill it with the right content, and focus and confidence are the results. For background on the field itself, see <a href="/what-is-sports-psychology/">what sports psychology is</a>.</p>
       </div>
     </div>
   </section>
@@ -175,7 +186,7 @@ const schema = {
   <section class="section soft" id="skills">
     <div class="wrap">
       <div class="section-head">
-        <h2>Key Mental Skills for Performance</h2>
+        <h2>Which mental skills do athletes train?</h2>
         <p>Learn and practice core techniques used by athletes at every level.</p>
       </div>
       <div class="prose">
