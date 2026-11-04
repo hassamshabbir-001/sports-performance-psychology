@@ -16,6 +16,17 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    title: "Bachelor's in Sports Psychology: Complete Degree Guide",
+    excerpt: "What a bachelor's in sports psychology covers: BA vs BS differences, curriculum, admission requirements, careers, and whether the degree is worth it.",
+    image: "/images/bachelors-in-sports-psychology.webp",
+    alt: "Sports psychology undergraduate student reading on a university campus",
+    href: "/blog/bachelors-in-sports-psychology/",
+    date: "2026-11-04",
+    category: "Degrees and education",
+    width: 1168,
+    height: 784,
+  },
+  {
     title: "Visualization for Athletes: A Practical Guide",
     excerpt: "A practical guide to visualization for athletes: what mental imagery is, how to practice it step by step, and the mistakes that make it useless.",
     image: "/images/visualization-for-athletes.webp",
