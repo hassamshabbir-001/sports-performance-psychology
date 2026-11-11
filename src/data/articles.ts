@@ -16,6 +16,17 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    title: "Doctorate in Sports Psychology: PhD Programs Guide (2026)",
+    excerpt: "A doctorate in sports psychology explained: the two tracks, seven verified programs, costs, funding, online options, and whether you need one at all.",
+    image: "/images/doctorate-in-sports-psychology.webp",
+    alt: "Doctoral graduate in cap and gown holding a diploma on a running track",
+    href: "/blog/doctorate-in-sports-psychology/",
+    date: "2026-11-12",
+    category: "Degrees and education",
+    width: 1168,
+    height: 795,
+  },
+  {
     title: "Bachelor's in Sports Psychology: Complete Degree Guide",
     excerpt: "What a bachelor's in sports psychology covers: BA vs BS differences, curriculum, admission requirements, careers, and whether the degree is worth it.",
     image: "/images/bachelors-in-sports-psychology.webp",
