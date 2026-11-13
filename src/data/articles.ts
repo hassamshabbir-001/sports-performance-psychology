@@ -16,6 +16,17 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    title: "Sports Psychology Career Paths: Roles & How to Start",
+    excerpt: "Sports psychology career paths by degree: the roles a bachelor's, master's, and doctorate open, entry-level jobs, CMPC vs licensure, timelines, pay, and where to find work.",
+    image: "/images/sports-psychology-career-paths.webp",
+    alt: "Sports psychology consultant with a clipboard talking with a young athlete on a running track",
+    href: "/blog/sports-psychology-career-paths/",
+    date: "2026-11-14",
+    category: "Careers",
+    width: 1168,
+    height: 784,
+  },
+  {
     title: "Doctorate in Sports Psychology: PhD Programs Guide (2026)",
     excerpt: "A doctorate in sports psychology explained: the two tracks, seven verified programs, costs, funding, online options, and whether you need one at all.",
     image: "/images/doctorate-in-sports-psychology.webp",
